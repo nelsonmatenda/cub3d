@@ -45,5 +45,5 @@ fclean: clean
 		make fclean -C $(LIBFTDIR)
 		rm -f $(NAME)
 		clear
-		@echo "ALL FILES CLEANED!"
+		@echo "ALL CLEANED!"
 re: fclean all
