@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   error_hendling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/02/10 14:55:51 by gudos-sa         ###   ########.fr       */
+/*   Created: 2025/03/21 13:35:27 by gudos-sa          #+#    #+#             */
+/*   Updated: 2025/03/21 13:35:29 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-#define CUB3D_H
+#include "cub3D.h"
 
-#  define BUFFER_SIZE 42
+void	ft_error(char *s)
+{
+	int	i;
 
-#include <libft.h>
-#include <mlx.h>
-#include <stdlib.h>
-#include <unistd.h>
-# include <fcntl.h>
-
-char	*ft_get_next_line(int fd, int *new_line_end);
-char	**ft_read_map(int fd);
-char	*ft_putin_line(char *line, char c);
-void	ft_error(char *s);
-
-#endif
+	i = 0;
+	write (2, "Error\n", 6);
+	while (s[i] != '\0')
+	{
+		write(2, &s[i], 1);
+		i++;
+	}
+	exit(1);
+}

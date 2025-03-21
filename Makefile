@@ -14,13 +14,18 @@ NAME = cub3D
 LIBFTDIR = ./libft
 MINILIBXDIR = ./minilibx-linux
 HEADCUB3DIR = ./includes
-INCLUDES = -I $(HEADCUB3DIR) -I $(MINILIBXDIR)
+INCLUDES = -I $(HEADCUB3DIR) -I $(MINILIBXDIR) -I $(LIBFTDIR)
 ADDLIBFT = -L $(LIBFTDIR) -lft
 ADDMINILIBX = -L $(MINILIBXDIR) -lmlx -lXext -lX11 -lm
 CC  = cc
 CFLAGS = -Wextra -Werror -Wall
 
-SRCS = ./src/cub3D.c
+SRCS = ./src/cub3D.c \
+		./src/get_next_line.c \
+		./src/get_next_line2.c \
+		./src/read_map.c \
+		./src/error_hendling.c
+
 OBJS = $(SRCS:.c=.o)
 
 
