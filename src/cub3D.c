@@ -230,6 +230,8 @@ t_game init_game(void) {
     };
 
     game.graphics.mlx_ptr = mlx_init();
+    if (!game.graphics.mlx_ptr)
+        exit(1);
     game.graphics.win_ptr = mlx_new_window(game.graphics.mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT, "Raycaster");
     game.graphics.img_ptr = mlx_new_image(game.graphics.mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
     game.graphics.img_data = mlx_get_data_addr(game.graphics.img_ptr, &game.graphics.bits_per_pixel,
