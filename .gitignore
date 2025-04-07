@@ -1,2 +1,5 @@
-/minilibx-linux
-/libft
+git /minilibx-linux
+.vscode
+*.o
+*.a
+cub3D

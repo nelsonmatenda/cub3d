@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/02/10 14:54:59 by gudos-sa         ###   ########.fr        #
+#    Updated: 2025/04/07 10:08:30 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D
+NAME = cub3d
 LIBFTDIR = ./libft
 MINILIBXDIR = ./minilibx-linux
 HEADCUB3DIR = ./includes
@@ -24,13 +24,14 @@ SRCS = ./src/cub3D.c \
 		./src/get_next_line.c \
 		./src/get_next_line2.c \
 		./src/read_map.c \
-		./src/error_hendling.c
+		./src/error_hendling.c \
+		./src/ft_exit.c
 
 OBJS = $(SRCS:.c=.o)
 
 
 all: $(NAME)
-  
+
 %.o:%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -52,3 +53,6 @@ fclean: clean
 		clear
 		@echo "ALL CLEANED!"
 re: fclean all
+
+run: all
+	./cub3d maps/default.cub
