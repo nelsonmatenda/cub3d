@@ -14,13 +14,13 @@
 
 void	error_msg(int error, char *msg)
 {
-	if(error == -1)
+	if (error == -1)
 		printf("Algum erro\n");
 	if (msg)
 		printf("\033[90m%s\033[0m\n", msg);
 }
 
-int ft_exit(t_game *game, int status, char *msg)
+int	ft_exit(t_game *game, int status, char *msg)
 {
 	if (game)
 		printf("free game\n");

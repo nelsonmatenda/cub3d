@@ -38,7 +38,7 @@ static void	ft_putin_map2(char ***new_, char *line, char **m, int i)
 	(*new_)[j + 1] = NULL;
 }
 
-static char	**ft_putin_map(char **map, char *line)
+char	**ft_putin_map(char **map, char *line)
 {
 	char			**novo;
 	static int		i = 0;
@@ -58,19 +58,21 @@ static char	**ft_putin_map(char **map, char *line)
 	return (novo);
 }
 
-char	**ft_read_map(int fd)
+void	ft_read_file(char *map_path, char ***file_content)
 {
 	int			new_line_end;
-	char		**map;
+	int			fd;
 	char		*line;
 
-	map = NULL;
 	new_line_end = 1;
+	fd = open(map_path, O_RDONLY);
+	if (fd == -1)
+		ft_error("Cannot read map.");
 	line = ft_get_next_line(fd, &new_line_end);
 	while (line != NULL)
 	{
-		map = ft_putin_map(map, line);
+		*file_content = ft_putin_map(*file_content, line);
 		line = ft_get_next_line(fd, &new_line_end);
 	}
-	return (map);
+	close(fd);
 }

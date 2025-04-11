@@ -12,40 +12,48 @@
 
 #include "cub3D.h"
 
-void ft_init_game(t_game *game, char *map_path)
+void	ft_get_map_e_config(char **file_content, t_game *game)
 {
-	int fd;
-
-	fd = open(map_path, O_RDONLY);
-	if (fd == -1)
-		ft_error("Cannot read map1.");
-	game->map = ft_read_map(fd);
-	close(fd);
-}
-
-int main(int ac, char **av)
-{
-	t_game game;
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	if (ac != 2)
-		return (ft_exit(NULL, MAP_ERR,\
-						"Theres no maps: Try > ./cub3d maps/default.cub"), 1);
-	ft_init_game(&game, av[1]);
-	while (game.map[i] != NULL)
+	game->map.configs = NULL;
+	game->map.content = NULL;
+	while (file_content[i] != NULL)
 	{
-		j = 0;
-		while (game.map[i][j] != '\0')
+		if (ft_strlen(file_content[i]) && j < 6)
 		{
-			write(1, &game.map[i][j], 1);
+			game->map.configs = ft_putin_map(game->map.configs,
+					file_content[i]);
 			j++;
 		}
-		write(1, "\n", 1);
+		else if (j == 6)
+		{
+			if (game->map.content != NULL || ft_strlen(file_content[i]))
+				game->map.content = ft_putin_map(game->map.content,
+						file_content[i]);
+		}
 		i++;
 	}
+}
 
+void	ft_process_map(char **file_content, t_game *game)
+{
+	ft_get_map_e_config(file_content, game);
+}
+
+int	main(int ac, char **av)
+{
+	t_game	game;
+	char	**file_content;
+
+	file_content = NULL;
+	if (ac != 2)
+		return (ft_exit(NULL, MAP_ERR, \
+						"Theres no maps: Try > ./cub3d maps/default.cub"), 1);
+	ft_read_file(av[1], &file_content);
+	ft_process_map(file_content, &game);
 	return (0);
 }

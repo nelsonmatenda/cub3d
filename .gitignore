@@ -1,4 +1,4 @@
-git /minilibx-linux
+/minilibx-linux
 .vscode
 *.o
 *.a
