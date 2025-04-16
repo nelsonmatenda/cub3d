@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+#include <stdio.h>
 
 typedef struct s_mlx{
 	void	*ptr_mlx;
@@ -34,9 +35,21 @@ typedef struct s_player{
 	float	plane_y;
 }	t_player;
 
+typedef struct s_rgb{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
 typedef struct s_map{
 	char	**content;
 	char	**configs;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	t_rgb	f;
+	t_rgb	c;
 }	t_map;
 
 typedef struct s_game{
@@ -47,8 +60,8 @@ typedef struct s_game{
 
 int		ft_exit(t_game *game, int status, char *msg);
 char	*ft_get_next_line(int fd, int *new_line_end);
-char	*ft_putin_line(char *line, char c);
-char	**ft_putin_map(char **map, char *line);
+char	*ft_append_character(char *line, char c);
+char	**ft_append_line(char **map, char *line);
 void	ft_error(char *s);
 void	ft_read_file(char *map_path, char ***file_content);
 

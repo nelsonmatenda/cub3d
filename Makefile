@@ -23,7 +23,7 @@ CFLAGS = -Wextra -Werror -Wall
 SRCS = ./src/cub3D.c \
 		./src/get_next_line.c \
 		./src/get_next_line2.c \
-		./src/read_map.c \
+		./src/read_file.c \
 		./src/error_hendling.c \
 		./src/ft_exit.c
 

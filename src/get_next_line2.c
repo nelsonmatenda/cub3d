@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void	ft_putin_line1(char **new_, char c)
+static void	ft_append_character1(char **new_, char c)
 {
 	*new_ = (char *)malloc(sizeof(char) * 2);
 	if (!(*new_))
@@ -21,14 +21,14 @@ static void	ft_putin_line1(char **new_, char c)
 	(*new_)[1] = '\0';
 }
 
-char	*ft_putin_line(char *line, char c)
+char	*ft_append_character(char *line, char c)
 {
 	int		i;
 	char	*new;
 
 	new = NULL;
 	if (line == NULL)
-		ft_putin_line1(&new, c);
+		ft_append_character1(&new, c);
 	else
 	{
 		i = 0;

@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void	ft_putin_map1(char ***new_, char *line)
+static void	ft_append_line1(char ***new_, char *line)
 {
 	*new_ = (char **)malloc(sizeof(char *) * 2);
 	if (!(*new_))
@@ -21,7 +21,7 @@ static void	ft_putin_map1(char ***new_, char *line)
 	(*new_)[1] = NULL;
 }
 
-static void	ft_putin_map2(char ***new_, char *line, char **m, int i)
+static void	ft_append_line2(char ***new_, char *line, char **m, int i)
 {
 	int	j;
 
@@ -38,7 +38,7 @@ static void	ft_putin_map2(char ***new_, char *line, char **m, int i)
 	(*new_)[j + 1] = NULL;
 }
 
-char	**ft_putin_map(char **map, char *line)
+char	**ft_append_line(char **map, char *line)
 {
 	char			**novo;
 	static int		i = 0;
@@ -46,12 +46,12 @@ char	**ft_putin_map(char **map, char *line)
 	novo = NULL;
 	if (map == NULL)
 	{
-		ft_putin_map1(&novo, line);
+		ft_append_line1(&novo, line);
 		i = 2;
 	}
 	else
 	{
-		ft_putin_map2(&novo, line, map, (int)i);
+		ft_append_line2(&novo, line, map, (int)i);
 		i++;
 	}
 	free(map);
@@ -71,7 +71,7 @@ void	ft_read_file(char *map_path, char ***file_content)
 	line = ft_get_next_line(fd, &new_line_end);
 	while (line != NULL)
 	{
-		*file_content = ft_putin_map(*file_content, line);
+		*file_content = ft_append_line(*file_content, line);
 		line = ft_get_next_line(fd, &new_line_end);
 	}
 	close(fd);

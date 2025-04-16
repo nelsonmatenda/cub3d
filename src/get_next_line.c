@@ -52,7 +52,7 @@ static int	ft_build_line(int *i, int q, char *b, char **l)
 			}
 			return (1);
 		}
-		*l = ft_putin_line(*l, b[*i]);
+		*l = ft_append_character(*l, b[*i]);
 		(*i)++;
 	}
 	return (0);
