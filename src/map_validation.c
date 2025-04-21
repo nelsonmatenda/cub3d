@@ -1,34 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hendling.c                                   :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:35:27 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/03/21 13:35:29 by gudos-sa         ###   ########.fr       */
+/*   Created: 2025/04/21 12:36:47 by gudos-sa          #+#    #+#             */
+/*   Updated: 2025/04/21 12:37:09 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
 
-void	ft_error(char *s)
-{
-	int	i;
-
-	i = 0;
-	write (2, "Error\n", 6);
-	while (s[i] != '\0')
-	{
-		write(2, &s[i], 1);
-		i++;
-	}
-	exit(1);
-}
-
-void	ft_error_read_file(char *s, char *p)
-{
-	if (p)
-		free(p);
-	ft_error(s);
-}

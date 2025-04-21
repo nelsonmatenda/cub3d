@@ -24,6 +24,8 @@ SRCS = ./src/cub3D.c \
 		./src/get_next_line.c \
 		./src/get_next_line2.c \
 		./src/read_file.c \
+		./src/map_validation.c\
+		./src/config_validation.c\
 		./src/error_hendling.c \
 		./src/ft_exit.c
 

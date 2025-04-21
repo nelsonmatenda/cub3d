@@ -24,9 +24,6 @@ static int	count_words(char const *s, char c)
 	find_caracter = 0;
 	while (s[contador] != '\0')
 	{
-		printf("Caracter: %c\n", s[contador]);
-		if(s[contador] == 32)
-			printf("ESPACO\n");
 		if (s[contador] != c && find_caracter == 0)
 		{
 			qtd_word++;
@@ -48,8 +45,6 @@ char	**ft_split(const char *s, char c)
 	if (!s)
 		return (0);
 	i = 0;
-	int w = count_words(s, c);
-	printf("Words: %d\n",w );
 	vet_words = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!vet_words)
 		return (0);

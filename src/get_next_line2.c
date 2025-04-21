@@ -16,10 +16,18 @@ static void	ft_append_character1(char **new_, char c)
 {
 	*new_ = (char *)malloc(sizeof(char) * 2);
 	if (!(*new_))
-		ft_error("Cannot read map.");
+		ft_error_read_file("Cannot read map.", NULL);
 	(*new_)[0] = c;
 	(*new_)[1] = '\0';
 }
+/*
+static void ft_append_character2(char **new_, char c)
+{
+	int i;
+
+	i = 0;
+	*new_ = (char) 
+}*/
 
 char	*ft_append_character(char *line, char c)
 {
@@ -34,7 +42,7 @@ char	*ft_append_character(char *line, char c)
 		i = 0;
 		new = (char *)malloc(sizeof(char) * (ft_strlen(line) + 2));
 		if (!new)
-			ft_error("Cannot read map.");
+			ft_error_read_file("Cannot read map.", line);
 		while (line[i] != '\0')
 		{
 			new[i] = line[i];

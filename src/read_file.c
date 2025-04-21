@@ -16,7 +16,7 @@ static void	ft_append_line1(char ***new_, char *line)
 {
 	*new_ = (char **)malloc(sizeof(char *) * 2);
 	if (!(*new_))
-		ft_error("Cannot read map.");
+		ft_error_read_file("Cannot read map.", NULL);
 	(*new_)[0] = line;
 	(*new_)[1] = NULL;
 }
@@ -28,7 +28,10 @@ static void	ft_append_line2(char ***new_, char *line, char **m, int i)
 	j = 0;
 	*new_ = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!(*new_))
+	{
+		free(m);
 		ft_error("Cannot read map.");
+	}
 	while (j < i - 1)
 	{
 		(*new_)[j] = m[j];
@@ -67,7 +70,7 @@ void	ft_read_file(char *map_path, char ***file_content)
 	new_line_end = 1;
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
-		ft_error("Cannot read map.");
+		ft_error_read_file("Cannot read map.", NULL);
 	line = ft_get_next_line(fd, &new_line_end);
 	while (line != NULL)
 	{
