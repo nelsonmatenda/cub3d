@@ -53,8 +53,7 @@ int	main(int ac, char **av)
 		return (ft_exit(NULL, MAP_ERR, \
 						"Theres no maps: Try > ./cub3d maps/default.cub"), 1);
 	
-	ft_read_file(av[1], &game.file_content);
-	
+	ft_read_file(av[1], &game);
 	ft_process_map(game.file_content, &game);
 	
 	init_game(&game);

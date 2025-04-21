@@ -101,7 +101,7 @@ char	**ft_append_line(char **map, char *line);
 void	ft_error(char *s);
 void	ft_set_color(t_game *game, char *key_config, char *rgb);
 void	ft_parse_config_line(t_game *game);
-void	ft_read_file(char *map_path, char ***file_content);
+void	ft_read_file(char *map_path, t_game *game);
 void	init_game(t_game *game);
 void	put_pixel(t_game *game, int color, int x, int y);
 void	draw_line(t_point a, t_point b, t_game *game);

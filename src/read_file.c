@@ -61,13 +61,14 @@ char	**ft_append_line(char **map, char *line)
 	return (novo);
 }
 
-void	ft_read_file(char *map_path, char ***file_content)
+void	ft_read_file(char *map_path, t_game *game)
 {
 	int			new_line_end;
 	int			fd;
 	char		*line;
 
 	new_line_end = 1;
+	game->file_content = NULL;
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 		ft_exit(NULL, -1, "Cannot read map.");
@@ -76,7 +77,7 @@ void	ft_read_file(char *map_path, char ***file_content)
 	
 	while (line != NULL)
 	{
-		*file_content = ft_append_line(*file_content, line);
+		game->file_content = ft_append_line(game->file_content, line);
 		line = ft_get_next_line(fd, &new_line_end);
 	}
 	close(fd);
