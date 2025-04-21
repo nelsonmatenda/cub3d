@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:35:39 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/04/07 09:51:13 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:52:58 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	error_msg(int error, char *msg)
 {
 	if (error == -1)
-		printf("Algum erro\n");
+		printf("Error:\n");
+	if (error == MALLOC_ERR)
+		printf("Error\nFalha na alocação");
 	if (msg)
 		printf("\033[90m%s\033[0m\n", msg);
 }

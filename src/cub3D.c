@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/07 10:08:55 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:48:28 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,19 @@ void	ft_process_map(char **file_content, t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	game;
-	char	**file_content;
 
-	file_content = NULL;
 	if (ac != 2)
 		return (ft_exit(NULL, MAP_ERR, \
 						"Theres no maps: Try > ./cub3d maps/default.cub"), 1);
-	ft_read_file(av[1], &file_content);
-	ft_process_map(file_content, &game);
+	
+	ft_read_file(av[1], &game.file_content);
+	
+	ft_process_map(game.file_content, &game);
+	
+	init_game(&game);
+	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game.player);
+	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game.player);
+	mlx_loop_hook(game.mlx, game_loop, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }

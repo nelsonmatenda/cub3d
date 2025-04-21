@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 10:47:42 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/03/21 10:47:44 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:53:12 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	ft_append_line1(char ***new_, char *line)
 {
 	*new_ = (char **)malloc(sizeof(char *) * 2);
 	if (!(*new_))
-		ft_error_read_file("Cannot read map.", NULL);
+		ft_exit(NULL, -1, "Cannot read map.");
 	(*new_)[0] = line;
 	(*new_)[1] = NULL;
 }
@@ -70,8 +70,10 @@ void	ft_read_file(char *map_path, char ***file_content)
 	new_line_end = 1;
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
-		ft_error_read_file("Cannot read map.", NULL);
+		ft_exit(NULL, -1, "Cannot read map.");
+	
 	line = ft_get_next_line(fd, &new_line_end);
+	
 	while (line != NULL)
 	{
 		*file_content = ft_append_line(*file_content, line);

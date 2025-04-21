@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 10:29:28 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/03/21 10:29:31 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:51:54 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "cub3D.h"
+
+#include "../includes/cub3D.h"
 
 static int	ft_read_to_buf(int fd, char *buf, int *i)
 {
@@ -17,7 +18,7 @@ static int	ft_read_to_buf(int fd, char *buf, int *i)
 
 	qtd_read = read(fd, buf, BUFFER_SIZE);
 	if (qtd_read == -1)
-		ft_error_read_file("Cannot read map.", NULL);
+		ft_exit(NULL, MALLOC_ERR, "Error\nCannot read map");
 	*i = 0;
 	return (qtd_read);
 }
@@ -29,7 +30,7 @@ static char	*ft_case_zero(char *line, int *new_line_end)
 		*new_line_end = 0;
 		line = (char *)malloc(sizeof(char));
 		if (!line)
-			ft_error_read_file("Cannot read map.", NULL);
+			ft_error("Cannot read map.");
 		line[0] = '\0';
 	}
 	*new_line_end = 0;
@@ -47,7 +48,7 @@ static int	ft_build_line(int *i, int q, char *b, char **l)
 			{
 				*l = (char *)malloc(sizeof(char));
 				if (!(*l))
-					ft_error_read_file("Cannot read map.", NULL);
+					ft_exit(NULL, MALLOC_ERR, "Error\nCannot read map");
 				(*l)[0] = '\0';
 			}
 			return (1);

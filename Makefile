@@ -6,7 +6,7 @@
 #    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/04/07 10:08:30 by nfigueir         ###   ########.fr        #
+#    Updated: 2025/04/21 12:54:01 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,16 +18,31 @@ INCLUDES = -I $(HEADCUB3DIR) -I $(MINILIBXDIR) -I $(LIBFTDIR)
 ADDLIBFT = -L $(LIBFTDIR) -lft
 ADDMINILIBX = -L $(MINILIBXDIR) -lmlx -lXext -lX11 -lm
 CC  = cc
-CFLAGS = -Wextra -Werror -Wall
+CFLAGS = -Wextra -Werror -Wall -g
 
-SRCS = ./src/cub3D.c \
-		./src/get_next_line.c \
-		./src/get_next_line2.c \
-		./src/read_file.c \
-		./src/map_validation.c\
-		./src/config_validation.c\
-		./src/error_hendling.c \
-		./src/ft_exit.c
+SRCS	= $(addprefix src/, $(addsuffix .c, \
+			cub3D \
+			get_next_line \
+			get_next_line2 \
+			read_file \
+			error_hendling \
+			ft_exit \
+			init \
+			move \
+			config_validation \
+			config_validation_2))
+
+SRCS	+= $(addprefix src/draw/, $(addsuffix .c, \
+			map \
+			line \
+			player))
+
+SRCS	+= $(addprefix src/utils/, $(addsuffix .c, \
+			put_pixel))
+
+SRCS	+= $(addprefix src/hooks/, $(addsuffix .c, \
+			player \
+			game))
 
 OBJS = $(SRCS:.c=.o)
 

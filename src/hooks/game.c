@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hendling.c                                   :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:35:27 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/21 14:48:57 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/04/21 12:48:08 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/04/21 15:19:58 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../../includes/cub3D.h"
 
-void	ft_error(char *s)
+static void	clean_image(t_game *game)
 {
-	int	i;
+	int	y;
+	int	x;
 
-	i = 0;
-	write (2, "Error\n", 6);
-	while (s[i] != '\0')
+	y = -1;
+	while (++y < HEIGHT)
 	{
-		write(2, &s[i], 1);
-		i++;
+		x = -1;
+		while (++x < WIDTH)
+			put_pixel(game, 0, x, y);
 	}
-	exit(1);
+}
+
+int	game_loop(t_game *game)
+{
+	move_player(&game->player);
+	clean_image(game);
+	draw_map(game);
+	draw_player(&game->player, 10, game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.ptr, 0, 0);
+	return (0);
 }
