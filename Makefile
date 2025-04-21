@@ -6,7 +6,7 @@
 #    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/04/16 12:40:24 by nfigueir         ###   ########.fr        #
+#    Updated: 2025/04/21 12:54:01 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,20 @@ SRCS	= $(addprefix src/, $(addsuffix .c, \
 			read_map \
 			error_hendling \
 			ft_exit \
-			init ))
+			init \
+			move))
 
 SRCS	+= $(addprefix src/draw/, $(addsuffix .c, \
-			map))
+			map \
+			line \
+			player))
 
 SRCS	+= $(addprefix src/utils/, $(addsuffix .c, \
 			put_pixel))
+
+SRCS	+= $(addprefix src/hooks/, $(addsuffix .c, \
+			player \
+			game))
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,26 +6,28 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:20:06 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/04/16 12:56:53 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:59:04 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void draw_square(int x, int y, int size, int color, t_game *game)
+void	draw_square(t_point a, int size, int color, t_game *game)
 {
-	int i = -1;
-	while (++i < size)
-		put_pixel(game, color, x + i, y);
+	int	i;
+
 	i = -1;
 	while (++i < size)
-		put_pixel(game, color, x, y + i);
+		put_pixel(game, color, a.x + i, a.y);
 	i = -1;
 	while (++i < size)
-		put_pixel(game, color, x + size, y + i);
+		put_pixel(game, color, a.x, a.y + i);
 	i = -1;
 	while (++i < size)
-		put_pixel(game, color, x + i, y + size);
+		put_pixel(game, color, a.x + size, a.y + i);
+	i = -1;
+	while (++i < size)
+		put_pixel(game, color, a.x + i, a.y + size);
 }
 
 void	draw_map(t_game *game)
@@ -36,13 +38,16 @@ void	draw_map(t_game *game)
 
 	map = game->map;
 	y = -1;
-	while(map[++y])
+	while (map[++y])
 	{
 		x = -1;
 		while (map[y][++x])
 		{
 			if (map[y][x] == '1')
-				draw_square((x * BLOCK), (y * BLOCK), BLOCK, 0x0000FF, game);
+			{
+				draw_square((t_point){x * BLOCK, y * BLOCK}, BLOCK, \
+							0x0000FF, game);
+			}
 		}
 	}
 }

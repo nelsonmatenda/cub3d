@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 10:29:28 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/03/21 10:29:31 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:51:54 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "cub3D.h"
+
+#include "../includes/cub3D.h"
 
 static int	ft_read_to_buf(int fd, char *buf, int *i)
 {
