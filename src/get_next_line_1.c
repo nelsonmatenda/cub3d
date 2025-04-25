@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -30,7 +30,7 @@ static char	*ft_case_zero(char *line, int *new_line_end)
 		*new_line_end = 0;
 		line = (char *)malloc(sizeof(char));
 		if (!line)
-			ft_error("Cannot read map.");
+			ft_exit(NULL, -1, "Cannot read map.");
 		line[0] = '\0';
 	}
 	*new_line_end = 0;

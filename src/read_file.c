@@ -17,7 +17,7 @@ static void	ft_append_line1(char ***new_, char *line)
 	*new_ = (char **)malloc(sizeof(char *) * 2);
 	if (!(*new_))
 		ft_exit(NULL, -1, "Cannot read map.");
-	(*new_)[0] = line;
+	(*new_)[0] = ft_strdup(line);
 	(*new_)[1] = NULL;
 }
 
@@ -28,16 +28,13 @@ static void	ft_append_line2(char ***new_, char *line, char **m, int i)
 	j = 0;
 	*new_ = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!(*new_))
-	{
-		free(m);
-		ft_error("Cannot read map.");
-	}
+		ft_exit(NULL, -1, "Cannot read map.");
 	while (j < i - 1)
 	{
-		(*new_)[j] = m[j];
+		(*new_)[j] = ft_strdup(m[j]);
 		j++;
 	}
-	(*new_)[j] = line;
+	(*new_)[j] = ft_strdup(line);
 	(*new_)[j + 1] = NULL;
 }
 
@@ -57,7 +54,7 @@ char	**ft_append_line(char **map, char *line)
 		ft_append_line2(&novo, line, map, (int)i);
 		i++;
 	}
-	free(map);
+	ft_free_matriz(map);
 	return (novo);
 }
 
@@ -68,16 +65,14 @@ void	ft_read_file(char *map_path, t_game *game)
 	char		*line;
 
 	new_line_end = 1;
-	game->file_content = NULL;
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 		ft_exit(NULL, -1, "Cannot read map.");
-	
 	line = ft_get_next_line(fd, &new_line_end);
-	
 	while (line != NULL)
 	{
 		game->file_content = ft_append_line(game->file_content, line);
+		free(line);
 		line = ft_get_next_line(fd, &new_line_end);
 	}
 	close(fd);

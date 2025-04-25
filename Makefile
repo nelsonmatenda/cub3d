@@ -22,15 +22,19 @@ CFLAGS = -Wextra -Werror -Wall -g
 
 SRCS	= $(addprefix src/, $(addsuffix .c, \
 			cub3D \
-			get_next_line \
-			get_next_line2 \
+			get_next_line_1\
+			get_next_line_2 \
 			read_file \
 			error_hendling \
+			free_game \
 			ft_exit \
 			init \
 			move \
-			config_validation \
-			config_validation_2))
+			config_validation_1 \
+			config_validation_2 \
+			config_validation_3_rest \
+			map_validation_1 \
+			map_validation_2))
 
 SRCS	+= $(addprefix src/draw/, $(addsuffix .c, \
 			map \

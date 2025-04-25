@@ -15,7 +15,7 @@
 void	error_msg(int error, char *msg)
 {
 	if (error == -1)
-		printf("Error:\n");
+		printf("Error\n");
 	if (error == MALLOC_ERR)
 		printf("Error\nFalha na alocação");
 	if (msg)
@@ -25,13 +25,11 @@ void	error_msg(int error, char *msg)
 int	ft_exit(t_game *game, int status, char *msg)
 {
 	if (game)
-		printf("free game\n");
+		ft_free_game(*game);
 	if (status < 0)
 	{
 		error_msg(status, msg);
 		return (exit(1), 1);
 	}
-	else
-		printf("success\n");
 	exit(0);
 }
