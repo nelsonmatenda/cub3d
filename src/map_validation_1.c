@@ -44,7 +44,6 @@ static int	ft_only_valid_chars(char **map_content)
 	int		row;
 	char	*valid_chars;
 
-	col = 0;
 	row = 0;
 	valid_chars = ft_strdup(" 01NSEW");
 	while (map_content[row] != NULL)
