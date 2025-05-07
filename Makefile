@@ -59,7 +59,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(LIBFTDIR)
 	make -C $(MINILIBXDIR)
-	$(CC) $(CFLAGS) $(INCLUDES)  -o $(NAME) $(OBJS) $(ADDLIBFT) $(ADDMINILIBX)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(ADDLIBFT) $(ADDMINILIBX)
 	clear
 	@echo "MANDATORY PART COMPILED!"
 clean:

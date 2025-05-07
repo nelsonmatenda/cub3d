@@ -71,10 +71,10 @@ int	main(int ac, char **av)
 	ft_read_file(av[1], &game);
 	ft_process_map(&game);
 	init_game(&game);
-	/*mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game.player);
+	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game.player);
 	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game.player);
 	mlx_loop_hook(game.mlx, game_loop, &game);
-	mlx_loop(game.mlx);*/
+	mlx_loop(game.mlx);
 	ft_free_game(game);
 	return (0);
 }
