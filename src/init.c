@@ -98,6 +98,7 @@ void	init_player(t_game *game)
 void	init_game(t_game *game)
 {
 	init_player(game);
+	
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		ft_exit(game, MLX_ERR, "Something wrong with mlx");
