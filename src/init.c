@@ -106,5 +106,4 @@ void	init_game(t_game *game)
 	game->img.ptr = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->img.data = mlx_get_data_addr(game->img.ptr, &game->img.bpp, \
 								&game->img.size_line, &game->img.endian);
-	mlx_put_image_to_window(game->mlx, game->win, game->img.ptr, 0, 0);
 }

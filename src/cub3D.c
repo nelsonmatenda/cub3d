@@ -68,14 +68,13 @@ void	ft_ray_direction(int x, t_game *game, float *ray_dir_x, float *ray_dir_y)
 	*ray_dir_y = game->player.dir_y + game->player.plane_y * equivalent_x;
 }
 
-int ft_wall_distance(t_game *game, float ray_dir_x, float ray_dir_y)
+int ft_wall_distance(t_game *game, float ray_dir_x, float ray_dir_y, int *side_impact)
 {
 	float delta_dist_x;
 	float delta_dist_y;
 	float side_dist_x;
 	float side_dist_y;
 	float distance;
-	int side_impact;
 	int side_direction_x;
 	int side_direction_y;
 	int current_cell_x;
@@ -116,28 +115,65 @@ int ft_wall_distance(t_game *game, float ray_dir_x, float ray_dir_y)
 		{
 			current_cell_x +=side_direction_x;
 			side_dist_x += delta_dist_x;
-			side_impact = 0;
+			*side_impact = 0;
 		}
 		else
 		{
 			current_cell_y += side_direction_y;
 			side_dist_y += delta_dist_y;
-			side_impact = 1;
+			*side_impact = 1;
 		}
 		if (game->map.content[current_cell_x][current_cell_y] != '0')
 			find_wall = 1;
 	}
-	if (side_impact == 0)
+	if (*side_impact == 0)
 		distance = side_dist_x - delta_dist_x;
 	else
 		distance = side_dist_y - delta_dist_y;
 	return (int)(HEIGHT / distance);
 }
 
-void ft_render(t_game *game, int wall_height)
+void ft_set_image_pixel(t_game *game, int x, int y, int wall_color)
 {
-	(void)game;
-	(void)wall_height;
+	char *pixel;
+
+	pixel = game->img.data + (y * game->img.size_line + x * (game->img.bpp/BITS));
+	*(int *)pixel = wall_color;
+}
+
+void ft_start_end_draw(int *start_draw, int *end_draw, int wall_height)
+{
+	*start_draw = (HEIGHT/2) - (wall_height/2);
+	*end_draw =  (HEIGHT/2) + (wall_height/2);
+	if (*start_draw < 0)
+		*start_draw = 0;
+	if (*end_draw >= HEIGHT)
+		*end_draw = HEIGHT - 1;
+}
+
+void ft_render_column(t_game *game, int wall_height, int x, int side_impact)
+{
+	int pos_start_draw;
+	int pos_end_draw;
+	int wall_color;
+	int y;
+
+	ft_start_end_draw(&pos_start_draw, &pos_end_draw, wall_height);
+	if (side_impact == 0)
+		wall_color = 0xAAAAAA;
+	else
+		wall_color = 0xFFFFFF;
+	y = 0;
+	while (y < HEIGHT)
+	{
+		if (y < pos_start_draw)
+			ft_set_image_pixel(game, x, y, 0x87CEEB);
+		else if (y > pos_end_draw)
+			ft_set_image_pixel(game, x, y, 0x333333);
+		else
+			ft_set_image_pixel(game, x, y, wall_color);
+		y++;
+	}
 }
 
 void	ft_raycasting(t_game *game)
@@ -146,15 +182,18 @@ void	ft_raycasting(t_game *game)
 	float ray_dir_x;
 	float ray_dir_y;
 	float wall_height;
+	int side_impact;
 
 	x = 0;
+	side_impact = 0;
 	while (x < WIDTH)
 	{
 		ft_ray_direction(x, game, &ray_dir_x, &ray_dir_y);
-		wall_height = ft_wall_distance(game, ray_dir_x, ray_dir_y);
-		ft_render(game, wall_height);
+		wall_height = ft_wall_distance(game, ray_dir_x, ray_dir_y, &side_impact);
+		ft_render_column(game, wall_height, x, side_impact);
 		x++;
 	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img.ptr, 0, 0);
 }
 
 int	main(int ac, char **av)

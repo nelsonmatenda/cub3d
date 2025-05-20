@@ -114,6 +114,7 @@ void	ft_read_file(char *map_path, t_game *game);
 void	ft_parse_content_map(t_game *game);
 int		ft_around1(char **map_content);
 void	init_game(t_game *game);
+void	ft_raycasting(t_game *game);
 void	put_pixel(t_game *game, int color, int x, int y);
 void	draw_line(t_point a, t_point b, t_game *game);
 void	draw_map(t_game *game);

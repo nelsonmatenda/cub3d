@@ -28,10 +28,7 @@ static void	clean_image(t_game *game)
 
 int	game_loop(t_game *game)
 {
-	move_player(&game->player);
 	clean_image(game);
-	draw_map(game);
-	draw_player(&game->player, 10, game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img.ptr, 0, 0);
+	ft_raycasting(game);
 	return (0);
 }
