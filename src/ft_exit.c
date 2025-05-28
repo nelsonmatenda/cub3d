@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:35:39 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/04/21 14:52:58 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:11:10 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_exit(t_game *game, int status, char *msg)
 	if (status < 0)
 	{
 		error_msg(status, msg);
-		return (exit(1), 1);
+		return (exit(EXIT_FAILURE), 1);
 	}
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

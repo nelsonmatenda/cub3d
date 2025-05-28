@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/21 14:48:28 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:08:18 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,74 +63,87 @@ void	ft_ray_direction(int x, t_game *game, float *ray_dir_x, float *ray_dir_y)
 {
 	float	equivalent_x;
 
-	equivalent_x = 2 * x / WIDTH - 1;
-	*ray_dir_x = game->player.dir_x + game->player.plane_x * equivalent_x;
-	*ray_dir_y = game->player.dir_y + game->player.plane_y * equivalent_x;
+	equivalent_x = 2 * ((float)x / WIDTH) - 1;
+	*ray_dir_x = game->player.dir.x + game->player.plane.x * equivalent_x;
+	*ray_dir_y = game->player.dir.y + game->player.plane.y * equivalent_x;
 }
 
-int ft_wall_distance(t_game *game, float ray_dir_x, float ray_dir_y, int *side_impact)
+void	ft_set_delta(t_vector ray, t_vector *delta)
 {
-	float delta_dist_x;
-	float delta_dist_y;
-	float side_dist_x;
-	float side_dist_y;
-	float distance;
-	int side_direction_x;
-	int side_direction_y;
-	int current_cell_x;
-	int current_cell_y;
-	int find_wall;
-
-	find_wall = 0;
-	current_cell_x = game->player.x;
-	current_cell_y = game->player.y;
-	delta_dist_x = fabs(1 / ray_dir_x); // deves ler: com passos do tamanho do raio em x(ray_dir_x), quantos passos serão dados percorrer 1 unidade(que é o tamnho da celula)
-	delta_dist_y = fabs(1 / ray_dir_y);
-
-	if (ray_dir_x < 0)
+	if (ray.x == 0)
 	{
-		side_direction_x = -1;
-		side_dist_x = fabs((game->player.x - current_cell_x) / ray_dir_x);
+		delta->x = 0;
+		delta->y = 1;
 	}
 	else
+		delta->x = fabs(1 / ray.x);
+	if (ray.y == 0)
 	{
-		side_direction_x = 1;
-		side_dist_x = fabs((current_cell_x + 1 - game->player.x) / ray_dir_x);
-	}
-
-	if (ray_dir_y < 0)
-	{
-		side_direction_y = -1;
-		side_dist_y = fabs((game->player.y - current_cell_y) / ray_dir_y);
+		delta->y = 0;
+		delta->x = 1;
 	}
 	else
-	{
-		side_direction_y = 1;
-		side_dist_y = fabs((current_cell_y + 1 - game->player.y) / ray_dir_y);
-	}
+		delta->y = fabs(1 / ray.y);
+}
 
-	while (!find_wall)
+void ft_set_side_dist(t_game *game, t_dda	*dda, t_vector ray)
+{
+	dda->step_x = 1;
+	dda->step_y = 1;
+	if (ray.x < 0)
 	{
-		if (side_dist_x < side_dist_y)
+		dda->step_x = -1;
+		dda->side_dist.x = fabs((game->player.pos.x - dda->current.x) / ray.x);
+	}
+	else
+		dda->side_dist.x = fabs((dda->current.x + 1 - game->player.pos.x) / ray.x);
+	if (ray.y < 0)
+	{
+		dda->step_y = -1;
+		dda->side_dist.y = fabs((game->player.pos.y - dda->current.y) / ray.y);
+	}
+	else
+		dda->side_dist.y = fabs((dda->current.y + 1 - game->player.pos.y) / ray.y);
+}
+
+void	ft_set_distance(t_game *game, t_dda *dda)
+{
+	while (!dda->is_wall)
+	{
+		if (dda->side_dist.x < dda->side_dist.y)
 		{
-			current_cell_x +=side_direction_x;
-			side_dist_x += delta_dist_x;
-			*side_impact = 0;
+			dda->current.x += dda->step_x;
+			dda->side_dist.x += dda->delta.x;
+			dda->side_impact = VERTICAL;
 		}
 		else
 		{
-			current_cell_y += side_direction_y;
-			side_dist_y += delta_dist_y;
-			*side_impact = 1;
+			dda->current.y += dda->step_y;
+			dda->side_dist.y += dda->delta.y;
+			dda->side_impact = HORIZONTAL;
 		}
-		if (game->map.content[current_cell_x][current_cell_y] != '0')
-			find_wall = 1;
+		if (game->map.content[(int)dda->current.y][(int)dda->current.x] != '0')
+			dda->is_wall = 1;
 	}
-	if (*side_impact == 0)
-		distance = side_dist_x - delta_dist_x;
+	if (dda->side_impact == VERTICAL)
+		dda->distance = dda->side_dist.x - dda->delta.x;
 	else
-		distance = side_dist_y - delta_dist_y;
-	return (int)(HEIGHT / distance);
+		dda->distance = dda->side_dist.y - dda->delta.y;
+}
+
+int ft_wall_distance(t_game *game, t_vector ray, int *side_impact)
+{
+	t_dda	dda;
+
+	dda.is_wall = 0;
+	dda.side_impact = 0;
+	dda.current.x = floor(game->player.pos.x);
+	dda.current.y = floor(game->player.pos.y);
+	ft_set_delta(ray, &dda.delta);
+	ft_set_side_dist(game, &dda, ray);
+	ft_set_distance(game, &dda);
+	*side_impact = dda.side_impact;
+	return (int)(HEIGHT / dda.distance);
 }
 
 void ft_set_image_pixel(t_game *game, int x, int y, int wall_color)
@@ -153,12 +166,12 @@ void ft_start_end_draw(int *start_draw, int *end_draw, int wall_height)
 
 void ft_render_column(t_game *game, int wall_height, int x, int side_impact)
 {
-	int pos_start_draw;
-	int pos_end_draw;
+	int start;
+	int end;
 	int wall_color;
 	int y;
 
-	ft_start_end_draw(&pos_start_draw, &pos_end_draw, wall_height);
+	ft_start_end_draw(&start, &end, wall_height);
 	if (side_impact == 0)
 		wall_color = 0xAAAAAA;
 	else
@@ -166,9 +179,9 @@ void ft_render_column(t_game *game, int wall_height, int x, int side_impact)
 	y = 0;
 	while (y < HEIGHT)
 	{
-		if (y < pos_start_draw)
+		if (y < start)
 			ft_set_image_pixel(game, x, y, 0x87CEEB);
-		else if (y > pos_end_draw)
+		else if (y > end)
 			ft_set_image_pixel(game, x, y, 0x333333);
 		else
 			ft_set_image_pixel(game, x, y, wall_color);
@@ -179,8 +192,7 @@ void ft_render_column(t_game *game, int wall_height, int x, int side_impact)
 void	ft_raycasting(t_game *game)
 {
 	int x;
-	float ray_dir_x;
-	float ray_dir_y;
+	t_vector	ray;
 	float wall_height;
 	int side_impact;
 
@@ -188,8 +200,8 @@ void	ft_raycasting(t_game *game)
 	side_impact = 0;
 	while (x < WIDTH)
 	{
-		ft_ray_direction(x, game, &ray_dir_x, &ray_dir_y);
-		wall_height = ft_wall_distance(game, ray_dir_x, ray_dir_y, &side_impact);
+		ft_ray_direction(x, game, &ray.x, &ray.y);
+		wall_height = ft_wall_distance(game, ray, &side_impact);
 		ft_render_column(game, wall_height, x, side_impact);
 		x++;
 	}
@@ -201,7 +213,7 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
-		return (ft_exit(NULL, MAP_ERR, \
+		return (ft_exit(NULL, MAP_ERR,
 						"Theres no maps: Try > ./cub3d maps/default.cub"), 1);
 	ft_init_game_struct(&game);
 	ft_read_file(av[1], &game);

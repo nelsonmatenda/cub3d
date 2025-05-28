@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/21 15:10:22 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:12:21 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define HEIGHT 800
 # define BITS 8
 # define BLOCK 32
+# define VERTICAL 0
+# define HORIZONTAL 1
 # define PI 3.14159265359
 
 # define W 119
@@ -39,11 +41,11 @@
 # define LEFT 65361
 # define RIGHT 65363
 
-typedef struct s_point
+typedef struct s_vector
 {
-	int	x;
-	int	y;
-}		t_point;
+	float	x;
+	float	y;
+}		t_vector;
 
 typedef struct s_img{
 	void	*ptr;
@@ -54,13 +56,9 @@ typedef struct s_img{
 }			t_img;
 
 typedef struct s_player{
-	float	x;
-	float	y;
-	float	plane_x;
-	float	plane_y;
-	float	dir_x;
-	float	dir_y;
-	float	angle;
+	t_vector	pos;
+	t_vector	plane;
+	t_vector	dir;
 	bool	key_up;
 	bool	key_down;
 	bool	key_right;
@@ -68,6 +66,19 @@ typedef struct s_player{
 	bool	left_rotate;
 	bool	right_rotate;
 }			t_player;
+
+typedef struct s_dda
+{
+	t_vector	delta;
+	t_vector	side_dist;
+	t_vector	current;
+	float		distance;
+	int			step_x;
+	int			step_y;
+	int			is_wall;
+	int			side_impact;
+}				t_dda;
+
 
 typedef struct s_rgb{
 	int	r;
@@ -88,14 +99,15 @@ typedef struct s_map{
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	t_img		img;
-	t_player	player;
-	t_map		map;
-	char		**file_content;
+	void			*mlx;
+	void			*win;
+	t_img			img;
+	t_player		player;
+	t_map			map;
+	char			**file_content;
 }				t_game;
 
+void    ft_rotate(float *x, float *y, float a);
 int		ft_exit(t_game *game, int status, char *msg);
 char	*ft_get_next_line(int fd, int *new_line_end);
 char	*ft_append_character(char *line, char c);
@@ -116,7 +128,7 @@ int		ft_around1(char **map_content);
 void	init_game(t_game *game);
 void	ft_raycasting(t_game *game);
 void	put_pixel(t_game *game, int color, int x, int y);
-void	draw_line(t_point a, t_point b, t_game *game);
+void	draw_line(t_vector a, t_vector b, t_game *game);
 void	draw_map(t_game *game);
 void	draw_player(t_player *player, int size, t_game *game);
 int		ft_key_release(int key, t_player *player);
