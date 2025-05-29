@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:43 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/29 15:38:21 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:04:11 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@
 // 	if (player->angle < 0)
 // 		player->angle += 2 * PI;
 // }
-void	ft_update_player()
-{
 
-}
 static void	ft_move_up_down(t_player *player, t_vector *velocity, int speed)
 {
 	if(player->key_up)

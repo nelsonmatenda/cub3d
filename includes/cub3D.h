@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/29 15:44:30 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:03:40 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ typedef struct s_player{
 	t_vector	pos;
 	t_vector	plane;
 	t_vector	dir;
-	bool	key_up;
-	bool	key_down;
-	bool	key_right;
-	bool	key_left;
-	bool	left_rotate;
-	bool	right_rotate;
+	bool		key_up;
+	bool		key_down;
+	bool		key_right;
+	bool		key_left;
+	bool		left_rotate;
+	bool		right_rotate;
 }			t_player;
 
 typedef struct s_dda
@@ -78,7 +78,6 @@ typedef struct s_dda
 	int			is_wall;
 	int			side_impact;
 }				t_dda;
-
 
 typedef struct s_rgb{
 	int	r;
@@ -129,6 +128,11 @@ void		ft_set_vector(t_vector *dst, t_vector a);
 void		ft_rotate_vector(float *x, float *y, float angle);
 void	init_game(t_game *game);
 void	ft_raycasting(t_game *game);
+void	ft_start_end_draw(int *start_draw, int *end_draw, int wall_height);
+void	ft_set_image_pixel(t_game *game, int x, int y, int wall_color);
+void	ft_set_delta(t_vector ray, t_vector *delta);
+void	ft_set_side_dist(t_game *game, t_dda	*dda, t_vector ray);
+void	ft_set_distance(t_game *game, t_dda *dda);
 void	put_pixel(t_game *game, int color, int x, int y);
 int		ft_key_release(int key, t_player *player);
 int		ft_key_press(int key, t_player *player);

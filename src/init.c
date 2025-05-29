@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:39:08 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/28 13:10:21 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/05/29 11:16:30 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	init_player(t_game *game)
 void	init_game(t_game *game)
 {
 	init_player(game);
-
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		ft_exit(game, MLX_ERR, "Something wrong with mlx");
