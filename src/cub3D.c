@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/28 15:08:18 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:44:40 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ int	main(int ac, char **av)
 	init_game(&game);
 	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game.player);
 	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game.player);
+	ft_rotate_vector(&game.player.dir.x, &game.player.dir.y, PI / 4);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
 	ft_free_game(game);

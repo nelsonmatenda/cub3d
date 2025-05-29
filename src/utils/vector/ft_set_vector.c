@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_set_vector.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 10:32:44 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/28 15:12:03 by gudos-sa         ###   ########.fr       */
+/*   Created: 2025/05/29 14:50:40 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/05/29 14:52:59 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../../includes/cub3D.h"
 
-void    ft_rotate(float *x, float *y, float a)
+void	ft_set_vector(t_vector *dst, t_vector a)
 {
-    t_vector    tmp;
-
-    tmp.x = *x;
-    tmp.y = *y;
-    *x = (tmp.x * cos(a)) - (tmp.y * sin(a));
-    *y = (tmp.x * sin(a)) + (tmp.y * cos(a));
+	dst->x = a.x;
+	dst->y = a.y;
 }

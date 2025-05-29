@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   ft_move_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:43 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/28 12:25:53 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:38:21 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,38 @@
 // 	if (player->angle < 0)
 // 		player->angle += 2 * PI;
 // }
-
-static void	move(t_player *player, int speed)
+void	ft_update_player()
 {
-	float	cos_angle;
-	float	sin_angle;
-	
-	if (player->key_up)
+
+}
+static void	ft_move_up_down(t_player *player, t_vector *velocity, int speed)
+{
+	if(player->key_up)
 	{
-		player->x += cos_angle * speed;
-		player->y += sin_angle * speed;
+		ft_set_vector(velocity, player->dir);
+		ft_mult_vector(velocity, speed);
 	}
-	if (player->key_down)
+	else if (player->key_down)
 	{
-		player->x -= cos_angle * speed;
-		player->y -= sin_angle * speed;
+		ft_set_vector(velocity, player->dir);
+		ft_mult_vector(velocity, -speed);
 	}
-	if (player->key_left)
-	{
-		player->x += sin_angle * speed;
-		player->y -= cos_angle * speed;
-	}
-	if (player->key_right)
-	{
-		player->x -= sin_angle * speed;
-		player->y += cos_angle * speed;
-	}
+	else
+		ft_mult_vector(velocity, 0);
 }
 
-void	move_player(t_player *player)
+void	ft_update(t_player *player, t_vector velocity)
 {
-	int		speed;
+	ft_mult_vector(&velocity, 1.0f / 60);
+	ft_add_vector(&player->pos, velocity);
+}
 
-	speed = 2;
-	// // rotate(player);
-	move(player, speed);
+void	ft_move_player(t_player *player)
+{
+	int			speed;
+	t_vector	velocity;
+
+	speed = 5;
+	ft_move_up_down(player, &velocity, speed);
+	ft_update(player, velocity);
 }

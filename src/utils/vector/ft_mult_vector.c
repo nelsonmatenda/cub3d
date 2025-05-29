@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   ft_mult_vector.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 12:48:08 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/29 15:32:28 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/05/29 14:46:31 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/05/29 15:06:06 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../../includes/cub3D.h"
 
-static void	clean_image(t_game *game)
+/**
+ * @brief Multiply a vector with a scalar
+ *
+ * @param a Vector with x and y
+ * @param mult Scalar
+ * @return t_vector New vector
+ */
+t_vector	ft_mult_vector(t_vector *a, float mult)
 {
-	int	y;
-	int	x;
-
-	y = -1;
-	while (++y < HEIGHT)
-	{
-		x = -1;
-		while (++x < WIDTH)
-			put_pixel(game, 0, x, y);
-	}
-}
-
-int	game_loop(t_game *game)
-{
-	clean_image(game);
-	ft_move_player(&game->player);
-	ft_raycasting(game);
-	return (0);
+	a->x *= mult;
+	a->y *= mult;
+	return (*a);
 }

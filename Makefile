@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+         #
+#    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/05/28 15:14:08 by gudos-sa         ###   ########.fr        #
+#    Updated: 2025/05/29 15:34:55 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC  = cc
 CFLAGS = -Wextra -Werror -Wall -g
 
 SRCS	= $(addprefix src/, $(addsuffix .c, \
-			rotate \
+			ft_move_player \
 			cub3D \
 			get_next_line_1\
 			get_next_line_2 \
@@ -37,6 +37,12 @@ SRCS	= $(addprefix src/, $(addsuffix .c, \
 
 SRCS	+= $(addprefix src/utils/, $(addsuffix .c, \
 			put_pixel))
+
+SRCS	+= $(addprefix src/utils/vector/, $(addsuffix .c, \
+			ft_add_vector \
+			ft_mult_vector \
+			ft_rotate_vector \
+			ft_set_vector ))
 
 SRCS	+= $(addprefix src/hooks/, $(addsuffix .c, \
 			player \
