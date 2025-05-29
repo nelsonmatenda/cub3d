@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 10:47:42 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/21 14:53:12 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/15 10:06:41 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,17 @@ char	**ft_append_line(char **map, char *line)
 
 void	ft_read_file(char *map_path, t_game *game)
 {
-	int			new_line_end;
-	int			fd;
-	char		*line;
+	int		new_line_end;
+	int		fd;
+	char	*line;
+	int		len;
 
 	new_line_end = 1;
+	game->file_content = NULL;
+	len = ft_strlen(map_path);
+	if (len < 4 || ft_strncmp(map_path + len - 4, ".cub",
+		ft_strlen(".cub")))
+		ft_exit(game, MAP_ERR, "Invalid file extension");
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 		ft_exit(NULL, -1, "Cannot read map.");
