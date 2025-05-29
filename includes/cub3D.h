@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/28 15:12:21 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/05/29 11:39:51 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ typedef struct s_player{
 	t_vector	pos;
 	t_vector	plane;
 	t_vector	dir;
-	bool	key_up;
-	bool	key_down;
-	bool	key_right;
-	bool	key_left;
-	bool	left_rotate;
-	bool	right_rotate;
+	bool		key_up;
+	bool		key_down;
+	bool		key_right;
+	bool		key_left;
+	bool		left_rotate;
+	bool		right_rotate;
 }			t_player;
 
 typedef struct s_dda
@@ -78,7 +78,6 @@ typedef struct s_dda
 	int			is_wall;
 	int			side_impact;
 }				t_dda;
-
 
 typedef struct s_rgb{
 	int	r;
@@ -107,7 +106,7 @@ typedef struct s_game
 	char			**file_content;
 }				t_game;
 
-void    ft_rotate(float *x, float *y, float a);
+void	ft_rotate(float *x, float *y, float a);
 int		ft_exit(t_game *game, int status, char *msg);
 char	*ft_get_next_line(int fd, int *new_line_end);
 char	*ft_append_character(char *line, char c);
@@ -127,6 +126,11 @@ void	ft_parse_content_map(t_game *game);
 int		ft_around1(char **map_content);
 void	init_game(t_game *game);
 void	ft_raycasting(t_game *game);
+void	ft_start_end_draw(int *start_draw, int *end_draw, int wall_height);
+void	ft_set_image_pixel(t_game *game, int x, int y, int wall_color);
+void	ft_set_delta(t_vector ray, t_vector *delta);
+void	ft_set_side_dist(t_game *game, t_dda	*dda, t_vector ray);
+void	ft_set_distance(t_game *game, t_dda *dda);
 void	put_pixel(t_game *game, int color, int x, int y);
 void	draw_line(t_vector a, t_vector b, t_game *game);
 void	draw_map(t_game *game);

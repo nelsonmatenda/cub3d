@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:43 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/28 12:25:53 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/05/29 11:28:58 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	move(t_player *player, int speed)
 {
 	float	cos_angle;
 	float	sin_angle;
-	
+
 	if (player->key_up)
 	{
 		player->x += cos_angle * speed;
@@ -59,6 +59,5 @@ void	move_player(t_player *player)
 	int		speed;
 
 	speed = 2;
-	// // rotate(player);
 	move(player, speed);
 }

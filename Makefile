@@ -6,7 +6,7 @@
 #    By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/05/28 15:14:08 by gudos-sa         ###   ########.fr        #
+#    Updated: 2025/05/29 11:26:12 by gudos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS	= $(addprefix src/, $(addsuffix .c, \
 			config_validation_2 \
 			config_validation_3_rest \
 			map_validation_1 \
-			map_validation_2))
+			map_validation_2 \
+			raycasting_1 \
+			raycasting_2))
 
 SRCS	+= $(addprefix src/utils/, $(addsuffix .c, \
 			put_pixel))
