@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hendling.c                                   :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 13:35:27 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/21 14:48:57 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/05/28 10:32:44 by gudos-sa          #+#    #+#             */
+/*   Updated: 2025/05/28 15:12:03 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../includes/cub3D.h"
 
-void	ft_error(char *s)
+void    ft_rotate(float *x, float *y, float a)
 {
-	int	i;
+    t_vector    tmp;
 
-	i = 0;
-	write (2, "Error\n", 6);
-	while (s[i] != '\0')
-	{
-		write(2, &s[i], 1);
-		i++;
-	}
-	exit(1);
+    tmp.x = *x;
+    tmp.y = *y;
+    *x = (tmp.x * cos(a)) - (tmp.y * sin(a));
+    *y = (tmp.x * sin(a)) + (tmp.y * cos(a));
 }
