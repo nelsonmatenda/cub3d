@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/29 16:09:59 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:19:42 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main(int ac, char **av)
 	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game.player);
 	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game.player);
 	ft_rotate_vector(&game.player.dir.x, &game.player.dir.y, 1);
+	ft_rotate_vector(&game.player.plane.x, &game.player.plane.y, 1);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
 	ft_free_game(game);
