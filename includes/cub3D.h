@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/29 11:39:51 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:03:40 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,10 @@ typedef struct s_game
 	char			**file_content;
 }				t_game;
 
-void	ft_rotate(float *x, float *y, float a);
 int		ft_exit(t_game *game, int status, char *msg);
 char	*ft_get_next_line(int fd, int *new_line_end);
 char	*ft_append_character(char *line, char c);
 char	**ft_append_line(char **map, char *line);
-void	ft_error(char *s);
 void	ft_free_game(t_game game);
 void	ft_free_matriz(char **matriz);
 void	ft_free_t_map(t_map map);
@@ -124,6 +122,10 @@ void	ft_parse_config_line2(t_game *game, char **parts);
 void	ft_read_file(char *map_path, t_game *game);
 void	ft_parse_content_map(t_game *game);
 int		ft_around1(char **map_content);
+t_vector	ft_mult_vector(t_vector *a, float mult);
+t_vector	ft_add_vector(t_vector *a, t_vector b);
+void		ft_set_vector(t_vector *dst, t_vector a);
+void		ft_rotate_vector(float *x, float *y, float angle);
 void	init_game(t_game *game);
 void	ft_raycasting(t_game *game);
 void	ft_start_end_draw(int *start_draw, int *end_draw, int wall_height);
@@ -132,12 +134,9 @@ void	ft_set_delta(t_vector ray, t_vector *delta);
 void	ft_set_side_dist(t_game *game, t_dda	*dda, t_vector ray);
 void	ft_set_distance(t_game *game, t_dda *dda);
 void	put_pixel(t_game *game, int color, int x, int y);
-void	draw_line(t_vector a, t_vector b, t_game *game);
-void	draw_map(t_game *game);
-void	draw_player(t_player *player, int size, t_game *game);
 int		ft_key_release(int key, t_player *player);
 int		ft_key_press(int key, t_player *player);
-void	move_player(t_player *player);
+void	ft_move_player(t_player *player);
 int		game_loop(t_game *game);
 
 #endif

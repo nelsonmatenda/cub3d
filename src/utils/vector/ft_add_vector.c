@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   ft_add_vector.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 12:48:08 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/29 15:32:28 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/05/29 15:24:45 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/05/29 15:30:52 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../../includes/cub3D.h"
 
-static void	clean_image(t_game *game)
+/**
+ * @brief Calculate the sum of two vectors.
+ *
+ * @param a Vector with x and y do want add
+ * @param b Vector with x and y
+ * @return New vector result of sum
+ */
+t_vector	ft_add_vector(t_vector *a, t_vector b)
 {
-	int	y;
-	int	x;
-
-	y = -1;
-	while (++y < HEIGHT)
-	{
-		x = -1;
-		while (++x < WIDTH)
-			put_pixel(game, 0, x, y);
-	}
+	a->x += b.x;
+	a->y += b.y;
+	return (*a);
 }
 
-int	game_loop(t_game *game)
-{
-	clean_image(game);
-	ft_move_player(&game->player);
-	ft_raycasting(game);
-	return (0);
-}
