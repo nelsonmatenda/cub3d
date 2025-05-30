@@ -6,7 +6,7 @@
 #    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/05/29 16:02:41 by nfigueir         ###   ########.fr        #
+#    Updated: 2025/05/30 10:21:09 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCS	= $(addprefix src/, $(addsuffix .c, \
 			raycasting_2))
 
 SRCS	+= $(addprefix src/utils/, $(addsuffix .c, \
-			put_pixel))
+			put_pixel \
+			get_time_in_milliseconds ))
 
 SRCS	+= $(addprefix src/utils/vector/, $(addsuffix .c, \
 			ft_add_vector \
@@ -49,6 +50,7 @@ SRCS	+= $(addprefix src/utils/vector/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/hooks/, $(addsuffix .c, \
 			player \
 			game))
+
 
 OBJS = $(SRCS:.c=.o)
 

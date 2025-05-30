@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:43 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/30 09:26:09 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/30 10:15:38 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,25 @@ static void	ft_rotate_left_right(t_player *player, float *angle)
 		*angle = 0;
 }
 
-static void	ft_update(t_player *player, t_vector v, t_vector s, float angle)
+static void	ft_update(t_player *player, t_move move, double time)
 {
-	ft_mult_vector(&v, 1.0f / 60);
-	ft_add_vector(&player->pos, v);
-	ft_mult_vector(&s, 1.0f / 60);
-	ft_add_vector(&player->pos, s);
-	ft_rotate_vector(&player->dir.x, &player->dir.y, angle / 60);
-	ft_rotate_vector(&player->plane.x, &player->plane.y, angle / 60);
+	ft_mult_vector(&move.velocity, time / 1000);
+	ft_add_vector(&player->pos, move.velocity);
+	ft_mult_vector(&move.strafe, time / 1000);
+	ft_add_vector(&player->pos, move.strafe);
+	ft_rotate_vector(&player->dir.x, &player->dir.y, \
+						move.rotate_speed * time / 1000);
+	ft_rotate_vector(&player->plane.x, &player->plane.y, \
+						move.rotate_speed * time / 1000);
 }
 
-void	ft_move_player(t_player *player)
+void	ft_move_player(t_player *player, double time)
 {
-	int			speed;
-	float		rotate_speed;
-	t_vector	strafe;
-	t_vector	velocity;
+	t_move	move;
 
-	speed = 5;
-	ft_move_up_down(player, &velocity, speed);
-	ft_move_left_right(player, &strafe, speed);
-	ft_rotate_left_right(player, &rotate_speed);
-	ft_update(player, velocity, strafe, rotate_speed);
+	move.speed = 5;
+	ft_move_up_down(player, &move.velocity, move.speed);
+	ft_move_left_right(player, &move.strafe, move.speed);
+	ft_rotate_left_right(player, &move.rotate_speed);
+	ft_update(player, move, time);
 }

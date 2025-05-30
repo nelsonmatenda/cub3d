@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/29 16:03:40 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/30 10:07:36 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <libft.h>
 # include <mlx.h>
 # include <stdlib.h>
-# include <unistd.h>
+# include <sys/time.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
@@ -96,14 +96,24 @@ typedef struct s_map{
 	t_rgb	c;
 }	t_map;
 
+typedef struct s_move
+{
+	int			speed;
+	float		rotate_speed;
+	t_vector	strafe;
+	t_vector	velocity;
+}				t_move;
+
+
 typedef struct s_game
 {
-	void			*mlx;
-	void			*win;
-	t_img			img;
-	t_player		player;
-	t_map			map;
-	char			**file_content;
+	void		*mlx;
+	void		*win;
+	t_img		img;
+	t_player	player;
+	t_map		map;
+	char		**file_content;
+	double		delta_time;
 }				t_game;
 
 int		ft_exit(t_game *game, int status, char *msg);
@@ -122,6 +132,7 @@ void	ft_parse_config_line2(t_game *game, char **parts);
 void	ft_read_file(char *map_path, t_game *game);
 void	ft_parse_content_map(t_game *game);
 int		ft_around1(char **map_content);
+double		get_time_in_milliseconds(void);
 t_vector	ft_mult_vector(t_vector *a, float mult);
 t_vector	ft_add_vector(t_vector *a, t_vector b);
 void		ft_set_vector(t_vector *dst, t_vector a);
@@ -136,7 +147,7 @@ void	ft_set_distance(t_game *game, t_dda *dda);
 void	put_pixel(t_game *game, int color, int x, int y);
 int		ft_key_release(int key, t_player *player);
 int		ft_key_press(int key, t_player *player);
-void	ft_move_player(t_player *player);
+void	ft_move_player(t_player *player, double time);
 int		game_loop(t_game *game);
 
 #endif
