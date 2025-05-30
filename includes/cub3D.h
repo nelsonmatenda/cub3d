@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/30 10:07:36 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:42:30 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define WIDTH 1280
 # define HEIGHT 800
 # define BITS 8
-# define BLOCK 32
+# define LIMIT 0.4
 # define VERTICAL 0
 # define HORIZONTAL 1
 # define PI 3.14159265359
@@ -135,6 +135,8 @@ int		ft_around1(char **map_content);
 double		get_time_in_milliseconds(void);
 t_vector	ft_mult_vector(t_vector *a, float mult);
 t_vector	ft_add_vector(t_vector *a, t_vector b);
+t_vector	ft_mult_two_vector(t_vector *a, t_vector b);
+float		ft_mag_vector(t_vector a);
 void		ft_set_vector(t_vector *dst, t_vector a);
 void		ft_rotate_vector(float *x, float *y, float angle);
 void	init_game(t_game *game);
@@ -147,7 +149,9 @@ void	ft_set_distance(t_game *game, t_dda *dda);
 void	put_pixel(t_game *game, int color, int x, int y);
 int		ft_key_release(int key, t_player *player);
 int		ft_key_press(int key, t_player *player);
-void	ft_move_player(t_player *player, double time);
+t_vector	ft_check_colision(t_player *player, t_vector p_next, t_vector m, \
+								char **map);
+void	ft_move_player(t_player *player, double time, char **map);
 int		game_loop(t_game *game);
 
 #endif
