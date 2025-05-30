@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/29 16:19:42 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/30 09:59:12 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_init_game_struct(t_game *game)
 	game->map.no = NULL;
 	game->map.ea = NULL;
 	game->map.we = NULL;
+	game->delta_time = 0;
 }
 
 int	main(int ac, char **av)
