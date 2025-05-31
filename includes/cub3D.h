@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/30 14:42:30 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:52:27 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define MAP_ERR -1
 # define MLX_ERR -32
 # define MALLOC_ERR -33
-# define WIDTH 1280
-# define HEIGHT 800
+# define WIDTH 320
+# define HEIGHT 200
 # define BITS 8
 # define LIMIT 0.4
 # define VERTICAL 0

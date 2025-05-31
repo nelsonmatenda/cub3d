@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:43 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/30 13:20:57 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/31 21:30:29 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,20 @@ static void	ft_update(t_player *player, t_move move, double time, char **map)
 {
 	t_vector	movement;
 	t_vector	p_aux;
+	t_vector	colision;
 
 	ft_mult_vector(&move.velocity, time / 1000);
 	ft_mult_vector(&move.strafe, time / 1000);
 	ft_set_vector(&movement, move.velocity);
 	ft_add_vector(&movement, move.strafe);
-	ft_set_vector(&p_aux, player->pos);
-	ft_mult_two_vector(&movement, ft_check_colision(player, p_aux, movement, map));
-	ft_add_vector(&player->pos, movement);
+	p_aux = (t_vector){player->pos.x + movement.x, player->pos.y};
+	colision = ft_check_colision(player, p_aux, (t_vector){movement.x, 0}, map);
+	if (colision.x != 0)
+		player->pos.x = p_aux.x;
+	p_aux = (t_vector){player->pos.x, player->pos.y + movement.y};
+	colision = ft_check_colision(player, p_aux, (t_vector){0, movement.y}, map);
+	if (colision.y != 0)
+		player->pos.y = p_aux.y;
 	ft_rotate_vector(&player->dir.x, &player->dir.y, \
 						move.rotate_speed * time / 1000);
 	ft_rotate_vector(&player->plane.x, &player->plane.y, \

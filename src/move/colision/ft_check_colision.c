@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_colision.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:01:40 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/30 15:23:26 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/31 21:27:19 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ t_vector	ft_square_colision(t_vector p, t_vector p_next, t_vector m, \
 	t_vector	res;
 
 	ft_set_vector(&res, (t_vector){0, 0});
+	if (m.y < 0 || m.x < 0)
+		return ((t_vector){1, 1});
+	if (map[(int)m.y] == NULL || (int)m.x >= (int)ft_strlen(map[(int)m.y]))
+		return ((t_vector){1, 1});
 	if (map[(int)m.y][(int)m.x] == '1')
 	{
 		if((p_next.x + LIMIT < m.x) || (p_next.x - LIMIT > m.x + 1) \

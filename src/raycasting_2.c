@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:23:21 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/29 11:36:59 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/05/31 20:51:54 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_set_distance(t_game *game, t_dda *dda)
 			dda->side_dist.y += dda->delta.y;
 			dda->side_impact = HORIZONTAL;
 		}
-		if (game->map.content[(int)dda->current.y][(int)dda->current.x] != '0')
+		if (dda->current.y >= 0 &&	dda->current.x >= 0 && game->map.content[(int)dda->current.y][(int)dda->current.x] && game->map.content[(int)dda->current.y][(int)dda->current.x] != '0')
 			dda->is_wall = 1;
 	}
 	if (dda->side_impact == VERTICAL)
