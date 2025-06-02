@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 10:47:42 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/15 10:06:41 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:46:49 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_read_file(char *map_path, t_game *game)
 	game->file_content = NULL;
 	len = ft_strlen(map_path);
 	if (len < 4 || ft_strncmp(map_path + len - 4, ".cub",
-		ft_strlen(".cub")))
+			ft_strlen(".cub")))
 		ft_exit(game, MAP_ERR, "Invalid file extension");
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)

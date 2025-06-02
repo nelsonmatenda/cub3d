@@ -6,13 +6,42 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:18:45 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/29 11:31:44 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:47:23 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_render_column(t_game *game, int wall_height, int x, int side_impact)
+void	ft_draw_ceil_floor(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT / 2)
+		{
+			ft_set_image_pixel(game, x, y, 0x87CEEB);
+			y++;
+		}
+		x++;
+	}
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = HEIGHT / 2;
+		while (y < HEIGHT)
+		{
+			ft_set_image_pixel(game, x, y, 0x333333);
+			y++;
+		}
+		x++;
+	}
+}
+
+void	ft_render_wall(t_game *game, int wall_height, int x, int side_impact)
 {
 	int	start;
 	int	end;
@@ -24,15 +53,10 @@ void	ft_render_column(t_game *game, int wall_height, int x, int side_impact)
 		wall_color = 0xAAAAAA;
 	else
 		wall_color = 0xFFFFFF;
-	y = 0;
-	while (y < HEIGHT)
+	y = start;
+	while (y <= end)
 	{
-		if (y < start)
-			ft_set_image_pixel(game, x, y, 0x87CEEB);
-		else if (y > end)
-			ft_set_image_pixel(game, x, y, 0x333333);
-		else
-			ft_set_image_pixel(game, x, y, wall_color);
+		ft_set_image_pixel(game, x, y, wall_color);
 		y++;
 	}
 }
@@ -71,11 +95,12 @@ void	ft_raycasting(t_game *game)
 
 	x = 0;
 	side_impact = 0;
+	ft_draw_ceil_floor(game);
 	while (x < WIDTH)
 	{
 		ft_ray_direction(x, game, &ray.x, &ray.y);
 		wall_height = ft_wall_distance(game, ray, &side_impact);
-		ft_render_column(game, wall_height, x, side_impact);
+		ft_render_wall(game, wall_height, x, side_impact);
 		x++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.ptr, 0, 0);
