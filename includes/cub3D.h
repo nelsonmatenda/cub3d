@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/03 09:59:15 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/03 10:44:40 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define HORIZONTAL 1
 # define PI 3.14159265359
 
+# define KEY_ESC 65307
 # define W 119
 # define A 97
 # define S 115
@@ -117,6 +118,7 @@ typedef struct s_game
 }				t_game;
 
 int		ft_exit(t_game *game, int status, char *msg);
+int		ft_close_window(t_game *game);
 char	*ft_get_next_line(int fd, int *new_line_end);
 char	*ft_append_character(char *line, char c);
 char	**ft_append_line(char **map, char *line);
@@ -148,7 +150,7 @@ void	ft_set_side_dist(t_game *game, t_dda	*dda, t_vector ray);
 void	ft_set_distance(t_game *game, t_dda *dda);
 void	put_pixel(t_game *game, int color, int x, int y);
 int		ft_key_release(int key, t_player *player);
-int		ft_key_press(int key, t_player *player);
+int		ft_key_press(int key, t_game *game);
 t_vector	ft_check_colision(t_player *player, t_vector p_next, t_vector m, \
 								char **map);
 void	ft_move_player(t_player *player, double time, char **map);
