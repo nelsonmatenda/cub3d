@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
+#    By: matenda <matenda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/05/30 10:21:09 by nfigueir         ###   ########.fr        #
+#    Updated: 2025/05/31 23:18:05 by matenda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ CC  = cc
 CFLAGS = -Wextra -Werror -Wall -g
 
 SRCS	= $(addprefix src/, $(addsuffix .c, \
-			ft_move_player \
 			cub3D \
 			get_next_line_1\
 			get_next_line_2 \
@@ -45,11 +44,19 @@ SRCS	+= $(addprefix src/utils/vector/, $(addsuffix .c, \
 			ft_add_vector \
 			ft_mult_vector \
 			ft_rotate_vector \
-			ft_set_vector ))
+			ft_set_vector \
+			ft_mult_two_vector \
+			ft_mag_vector ))
 
 SRCS	+= $(addprefix src/hooks/, $(addsuffix .c, \
 			player \
 			game))
+
+SRCS	+= $(addprefix src/move/, $(addsuffix .c, \
+			ft_move_player ))
+
+SRCS	+= $(addprefix src/move/colision/, $(addsuffix .c, \
+			ft_check_colision ))
 
 
 OBJS = $(SRCS:.c=.o)

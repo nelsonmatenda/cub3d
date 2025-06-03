@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:48:08 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/30 10:17:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:59:56 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	game_loop(t_game *game)
 	double	start_time;
 	double	end_time;
 
-	ft_move_player(&game->player, game->delta_time);
+	ft_move_player(&game->player, game->delta_time, game->map.content);
 	start_time = get_time_in_milliseconds();
 	clean_image(game);
 	ft_raycasting(game);

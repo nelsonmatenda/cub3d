@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:43 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/30 10:15:38 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:03:32 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,36 @@ static void	ft_rotate_left_right(t_player *player, float *angle)
 		*angle = 0;
 }
 
-static void	ft_update(t_player *player, t_move move, double time)
+static void	ft_update(t_player *player, t_move move, double time, char **map)
 {
+	t_vector	movement;
+	t_vector	p_next;
+	t_vector	colision;
+
 	ft_mult_vector(&move.velocity, time / 1000);
-	ft_add_vector(&player->pos, move.velocity);
 	ft_mult_vector(&move.strafe, time / 1000);
-	ft_add_vector(&player->pos, move.strafe);
+	ft_set_vector(&movement, move.velocity);
+	ft_add_vector(&movement, move.strafe);
+	ft_set_vector(&p_next, player->pos);
+	ft_add_vector(&p_next, movement);
+	colision = ft_check_colision(player, p_next, movement, map);
+	ft_mult_two_vector(&movement, colision);
+	ft_add_vector(&player->pos, movement);
 	ft_rotate_vector(&player->dir.x, &player->dir.y, \
 						move.rotate_speed * time / 1000);
 	ft_rotate_vector(&player->plane.x, &player->plane.y, \
 						move.rotate_speed * time / 1000);
 }
 
-void	ft_move_player(t_player *player, double time)
+void	ft_move_player(t_player *player, double time, char **map)
 {
 	t_move	move;
 
 	move.speed = 5;
+	ft_set_vector(&move.velocity, (t_vector){0, 0});
+	ft_set_vector(&move.strafe, (t_vector){0, 0});
 	ft_move_up_down(player, &move.velocity, move.speed);
 	ft_move_left_right(player, &move.strafe, move.speed);
 	ft_rotate_left_right(player, &move.rotate_speed);
-	ft_update(player, move, time);
+	ft_update(player, move, time, map);
 }
