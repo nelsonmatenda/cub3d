@@ -6,26 +6,28 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:25:06 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/04/21 15:19:43 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/03 10:49:14 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int	ft_key_press(int key, t_player *player)
+int	ft_key_press(int key, t_game *game)
 {
+	if (key == KEY_ESC)
+		return (ft_close_window(game));
 	if (key == W)
-		player->key_up = true;
+		game->player.key_up = true;
 	if (key == S)
-		player->key_down = true;
+		game->player.key_down = true;
 	if (key == A)
-		player->key_left = true;
+		game->player.key_left = true;
 	if (key == D)
-		player->key_right = true;
+		game->player.key_right = true;
 	if (key == LEFT)
-		player->left_rotate = true;
+		game->player.left_rotate = true;
 	if (key == RIGHT)
-		player->right_rotate = true;
+		game->player.right_rotate = true;
 	return (0);
 }
 

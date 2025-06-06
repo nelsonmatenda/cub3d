@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_validation_1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:37:22 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/21 12:37:26 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/05 13:25:07 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 void	ft_set_texture(t_game *game, char **parts)
 {
+	int	len;
+	int	fd;
+
+	len = ft_strlen(parts[1]);
+	if (len < 4 || ft_strncmp(parts[1] + len - 4, ".xpm",
+		ft_strlen(".xpm")))
+		ft_exit(game, MAP_ERR, "Invalid type of sprite");
+	fd = open(parts[1], O_RDONLY);
+	if (fd == -1)
+		ft_exit(game, -1, "Sprite doesn't exist.");
+	close(fd);
 	if (ft_strncmp(parts[0], "NO", 2) == 0 && parts[0][2] == '\0')
 		game->map.no = ft_strdup(parts[1]);
 	else if (ft_strncmp(parts[0], "SO", 2) == 0 && parts[0][2] == '\0')

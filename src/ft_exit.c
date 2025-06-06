@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:35:39 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/28 15:11:10 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/03 10:24:11 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int	ft_exit(t_game *game, int status, char *msg)
 		error_msg(status, msg);
 		return (exit(EXIT_FAILURE), 1);
 	}
+	else
+		printf("\033[90m%s\033[0m\n", msg);
 	exit(EXIT_SUCCESS);
 }
