@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:18:45 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/02 16:47:23 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/06 11:40:30 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,35 @@ void	ft_draw_ceil_floor(t_game *game)
 	}
 }
 
-void	ft_render_wall(t_game *game, int wall_height, int x, int side_impact)
+void	ft_render_wall(t_game *game, float wall_distance, int x, int side_impact, t_vector ray)
 {
 	int	start;
 	int	end;
 	int	wall_color;
 	int	y;
+	t_vector	pixel;
+	float dist;
+	char *pixel_texture;
 
-	ft_start_end_draw(&start, &end, wall_height);
-	if (side_impact == 0)
-		wall_color = 0xAAAAAA;
-	else
-		wall_color = 0xFFFFFF;
+	ft_start_end_draw(&start, &end, (int)(HEIGHT / wall_distance));
 	y = start;
 	while (y <= end)
 	{
+		if (side_impact == HORIZONTAL)
+			dist = game->player.pos.x + wall_distance * ray.x;
+		else
+			dist = game->player.pos.y + wall_distance * ray.y;
+		dist -= floor(dist);
+		pixel.x = dist * game->map.textures[3].width;
+		pixel.y = (game->map.textures[3].height * (y - start)) / (int)(HEIGHT / wall_distance);
+		pixel_texture = (char *)game->map.textures[3].image.data + ((int)pixel.y * game->map.textures[3].image.size_line) + ((int)pixel.x * (game->map.textures[3].image.bpp / 8));
+		wall_color = *(int *)pixel_texture;
 		ft_set_image_pixel(game, x, y, wall_color);
 		y++;
 	}
 }
 
-int	ft_wall_distance(t_game *game, t_vector ray, int *side_impact)
+float	ft_wall_distance(t_game *game, t_vector ray, int *side_impact)
 {
 	t_dda	dda;
 
@@ -73,7 +81,7 @@ int	ft_wall_distance(t_game *game, t_vector ray, int *side_impact)
 	ft_set_side_dist(game, &dda, ray);
 	ft_set_distance(game, &dda);
 	*side_impact = dda.side_impact;
-	return ((int)(HEIGHT / dda.distance));
+	return (dda.distance);
 }
 
 void	ft_ray_direction(int x, t_game *game,
@@ -90,7 +98,7 @@ void	ft_raycasting(t_game *game)
 {
 	int				x;
 	int				side_impact;
-	float			wall_height;
+	float			wall_distance;
 	t_vector		ray;
 
 	x = 0;
@@ -99,8 +107,8 @@ void	ft_raycasting(t_game *game)
 	while (x < WIDTH)
 	{
 		ft_ray_direction(x, game, &ray.x, &ray.y);
-		wall_height = ft_wall_distance(game, ray, &side_impact);
-		ft_render_wall(game, wall_height, x, side_impact);
+		wall_distance = ft_wall_distance(game, ray, &side_impact);
+		ft_render_wall(game, wall_distance, x, side_impact, ray);
 		x++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.ptr, 0, 0);

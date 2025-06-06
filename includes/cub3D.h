@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/05/29 11:39:51 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:45:36 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,23 @@ typedef struct s_rgb{
 	int	b;
 }	t_rgb;
 
+typedef	struct s_texture
+{
+	t_img image;
+	int	width;
+	int	height;
+}	t_texture;
+
 typedef struct s_map{
-	char	**content;
-	char	**configs;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	t_rgb	f;
-	t_rgb	c;
+	char		**content;
+	char		**configs;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	t_texture	textures[4];
+	t_rgb		f;
+	t_rgb		c;
 }	t_map;
 
 typedef struct s_game
@@ -111,7 +119,6 @@ int		ft_exit(t_game *game, int status, char *msg);
 char	*ft_get_next_line(int fd, int *new_line_end);
 char	*ft_append_character(char *line, char c);
 char	**ft_append_line(char **map, char *line);
-void	ft_error(char *s);
 void	ft_free_game(t_game game);
 void	ft_free_matriz(char **matriz);
 void	ft_free_t_map(t_map map);
@@ -132,9 +139,6 @@ void	ft_set_delta(t_vector ray, t_vector *delta);
 void	ft_set_side_dist(t_game *game, t_dda	*dda, t_vector ray);
 void	ft_set_distance(t_game *game, t_dda *dda);
 void	put_pixel(t_game *game, int color, int x, int y);
-void	draw_line(t_vector a, t_vector b, t_game *game);
-void	draw_map(t_game *game);
-void	draw_player(t_player *player, int size, t_game *game);
 int		ft_key_release(int key, t_player *player);
 int		ft_key_press(int key, t_player *player);
 void	move_player(t_player *player);
