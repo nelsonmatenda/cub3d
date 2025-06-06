@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/06 12:47:49 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:12:08 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <libft.h>
 # include <mlx.h>
 # include <stdlib.h>
-# include <unistd.h>
+# include <sys/time.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
@@ -26,14 +26,15 @@
 # define MAP_ERR -1
 # define MLX_ERR -32
 # define MALLOC_ERR -33
-# define WIDTH 1280
-# define HEIGHT 800
+# define WIDTH 320
+# define HEIGHT 200
 # define BITS 8
-# define BLOCK 32
+# define LIMIT 0.4
 # define VERTICAL 0
 # define HORIZONTAL 1
 # define PI 3.14159265359
 
+# define KEY_ESC 65307
 # define W 119
 # define A 97
 # define S 115
@@ -123,18 +124,28 @@ typedef struct s_map{
 	t_rgb		c;
 }	t_map;
 
+typedef struct s_move
+{
+	int			speed;
+	float		rotate_speed;
+	t_vector	strafe;
+	t_vector	velocity;
+}				t_move;
+
+
 typedef struct s_game
 {
-	void			*mlx;
-	void			*win;
-	t_img			img;
-	t_player		player;
-	t_map			map;
-	char			**file_content;
+	void		*mlx;
+	void		*win;
+	t_img		img;
+	t_player	player;
+	t_map		map;
+	char		**file_content;
+	double		delta_time;
 }				t_game;
 
-void	ft_rotate(float *x, float *y, float a);
 int		ft_exit(t_game *game, int status, char *msg);
+int		ft_close_window(t_game *game);
 char	*ft_get_next_line(int fd, int *new_line_end);
 char	*ft_append_character(char *line, char c);
 char	**ft_append_line(char **map, char *line);
@@ -150,6 +161,13 @@ void	ft_parse_config_line2(t_game *game, char **parts);
 void	ft_read_file(char *map_path, t_game *game);
 void	ft_parse_content_map(t_game *game);
 int		ft_around1(char **map_content);
+double		get_time_in_milliseconds(void);
+t_vector	ft_mult_vector(t_vector *a, float mult);
+t_vector	ft_add_vector(t_vector *a, t_vector b);
+t_vector	ft_mult_two_vector(t_vector *a, t_vector b);
+float		ft_mag_vector(t_vector a);
+void		ft_set_vector(t_vector *dst, t_vector a);
+void		ft_rotate_vector(float *x, float *y, float angle);
 void	init_game(t_game *game);
 void	ft_raycasting(t_game *game);
 void	ft_start_end_draw(int *start_draw, int *end_draw, int wall_height);
@@ -159,8 +177,10 @@ void	ft_set_side_dist(t_game *game, t_dda	*dda, t_vector ray);
 void	ft_set_distance(t_game *game, t_dda *dda);
 void	put_pixel(t_game *game, int color, int x, int y);
 int		ft_key_release(int key, t_player *player);
-int		ft_key_press(int key, t_player *player);
-void	move_player(t_player *player);
+int		ft_key_press(int key, t_game *game);
+t_vector	ft_check_colision(t_player *player, t_vector p_next, t_vector m, \
+								char **map);
+void	ft_move_player(t_player *player, double time, char **map);
 int		game_loop(t_game *game);
 
 #endif

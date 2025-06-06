@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:48:08 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/06/06 14:39:41 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:13:17 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@ static void	clean_image(t_game *game)
 
 int	game_loop(t_game *game)
 {
-	ft_rotate(&game->player.dir.x, &game->player.dir.y, 0.02);
-	ft_rotate(&game->player.plane.x, &game->player.plane.y, 0.02);
+	double	start_time;
+	double	end_time;
+
+	ft_move_player(&game->player, game->delta_time, game->map.content);
+	start_time = get_time_in_milliseconds();
 	clean_image(game);
 	ft_raycasting(game);
+	end_time = get_time_in_milliseconds();
+	game->delta_time = end_time - start_time;
 	return (0);
 }

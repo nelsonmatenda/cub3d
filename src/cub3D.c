@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/06 11:27:23 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:14:45 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ void	ft_init_game_struct(t_game *game)
 	game->map.no = NULL;
 	game->map.ea = NULL;
 	game->map.we = NULL;
+	game->delta_time = 0;
+}
+
+int	ft_close_window(t_game *game)
+{
+	return (ft_exit(game, 1, "YOU END THE GAME"));
 }
 
 void	ft_load_texture_structs(t_game *game)
@@ -98,7 +104,8 @@ int	main(int ac, char **av)
 	ft_process_map(&game);
 	init_game(&game);
 	ft_load_texture_structs(&game);
-	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game.player);
+	mlx_hook(game.win, 17, 0, ft_close_window, &game);
+	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game);
 	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game.player);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
