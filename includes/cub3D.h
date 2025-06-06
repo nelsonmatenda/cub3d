@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/04 16:45:36 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:47:49 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,25 @@ typedef struct s_dda
 	int			is_wall;
 	int			side_impact;
 }				t_dda;
+
+typedef struct s_agrupamento_ft_raycasting
+{
+	int				x;
+	int				side_impact;
+	float			wall_distance;
+	t_vector		ray;
+} t_group_r;
+
+typedef struct s_agrupamento_ft_render_wall
+{
+	int	start;
+	int	end;
+	int	wall_color;
+	int	y;
+	t_vector	pixel;
+	float dist;
+	char *pixel_texture;
+} t_group_rw;
 
 typedef struct s_rgb{
 	int	r;
