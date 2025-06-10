@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:50:32 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/22 11:50:43 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:22:33 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,26 @@ void	ft_free_t_map(t_map map)
 		free(map.we);
 }
 
+void	ft_free_texture(t_game g, t_texture texture[4])
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (texture[i].image.ptr)
+			mlx_destroy_image(g.mlx, texture[i].image.ptr);
+		i++;
+	}
+}
+
 void	ft_free_game(t_game game)
 {
 	ft_free_t_map(game.map);
 	ft_free_matriz(game.file_content);
+	ft_free_texture(game, game.map.textures);
+	if (game.img.ptr)
+		mlx_destroy_image(game.mlx, game.img.ptr);
 	if (game.win)
 		mlx_destroy_window(game.mlx, game.win);
 	if (game.mlx)

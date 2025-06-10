@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 13:06:40 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:54:13 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ char		**ft_append_line(char **map, char *line);
 void		ft_free_game(t_game game);
 void		ft_free_matriz(char **matriz);
 void		ft_free_t_map(t_map map);
+void		ft_verif_texture(t_game *g, char **parts);
 void		ft_set_color(t_game *game, char **parts);
 int			ft_parse_rgb2(char **parts);
 int			ft_qtd_comma(char *rgb);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 12:20:48 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:19:11 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ void	ft_init_game_struct(t_game *game)
 	game->map.ea = NULL;
 	game->map.we = NULL;
 	game->delta_time = 0;
+	game->map.textures[0].image.ptr = NULL;
+	game->map.textures[1].image.ptr = NULL;
+	game->map.textures[2].image.ptr = NULL;
+	game->map.textures[3].image.ptr = NULL;
 }
 
 void	ft_load_texture_structs(t_game *game)
