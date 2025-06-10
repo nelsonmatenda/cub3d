@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/03 10:44:40 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:48:15 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define MAP_ERR -1
 # define MLX_ERR -32
 # define MALLOC_ERR -33
-# define WIDTH 320
-# define HEIGHT 200
+# define WIDTH 1024
+# define HEIGHT 800
 # define BITS 8
 # define LIMIT 0.4
 # define VERTICAL 0
@@ -80,21 +80,48 @@ typedef struct s_dda
 	int			side_impact;
 }				t_dda;
 
+typedef struct s_agrupamento_ft_raycasting
+{
+	int				x;
+	int				side_impact;
+	float			wall_distance;
+	t_vector		ray;
+} t_group_r;
+
+typedef struct s_agrupamento_ft_render_wall
+{
+	int	start;
+	int	end;
+	int	wall_color;
+	int	y;
+	t_vector	pixel;
+	float dist;
+	char *pixel_texture;
+} t_group_rw;
+
 typedef struct s_rgb{
 	int	r;
 	int	g;
 	int	b;
 }	t_rgb;
 
+typedef	struct s_texture
+{
+	t_img image;
+	int	width;
+	int	height;
+}	t_texture;
+
 typedef struct s_map{
-	char	**content;
-	char	**configs;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	t_rgb	f;
-	t_rgb	c;
+	char		**content;
+	char		**configs;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	t_texture	textures[4];
+	t_rgb		f;
+	t_rgb		c;
 }	t_map;
 
 typedef struct s_move

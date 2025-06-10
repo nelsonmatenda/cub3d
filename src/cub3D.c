@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/03 10:49:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:36:59 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_get_map_e_config(t_game *game)
 void	ft_process_map(t_game *game)
 {
 	ft_get_map_e_config(game);
-	ft_parse_config_line(game);
+	 ft_parse_config_line(game);
 	ft_parse_content_map(game);
 }
 
@@ -65,6 +65,33 @@ int	ft_close_window(t_game *game)
 	return (ft_exit(game, 1, "YOU END THE GAME"));
 }
 
+void	ft_load_texture_structs(t_game *game)
+{
+	int	i;
+	game->map.textures[0].image.ptr = mlx_xpm_file_to_image(game->mlx,
+			game->map.no, &game->map.textures[0].width,
+			&game->map.textures[0].height);
+	game->map.textures[1].image.ptr = mlx_xpm_file_to_image(game->mlx,
+			game->map.so, &game->map.textures[1].width,
+			&game->map.textures[1].height);
+	game->map.textures[2].image.ptr = mlx_xpm_file_to_image(game->mlx,
+			game->map.ea, &game->map.textures[2].width,
+			&game->map.textures[2].height);
+	game->map.textures[3].image.ptr = mlx_xpm_file_to_image(game->mlx,
+			game->map.we, &game->map.textures[3].width,
+			&game->map.textures[3].height);
+	i = 0;
+	while (i < 4)
+	{
+		game->map.textures[i].image.data = \
+		mlx_get_data_addr(game->map.textures[i].image.ptr,
+				&game->map.textures[i].image.bpp,
+				&game->map.textures[i].image.size_line,
+				&game->map.textures[i].image.endian);
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_game	game;
@@ -76,11 +103,10 @@ int	main(int ac, char **av)
 	ft_read_file(av[1], &game);
 	ft_process_map(&game);
 	init_game(&game);
+	ft_load_texture_structs(&game);
 	mlx_hook(game.win, 17, 0, ft_close_window, &game);
 	mlx_hook(game.win, 2, 1L << 0, ft_key_press, &game);
 	mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game.player);
-	ft_rotate_vector(&game.player.dir.x, &game.player.dir.y, 1);
-	ft_rotate_vector(&game.player.plane.x, &game.player.plane.y, 1);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
 	ft_free_game(game);
