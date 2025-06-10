@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:24:45 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/29 15:30:52 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:16:21 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ t_vector	ft_add_vector(t_vector *a, t_vector b)
 	a->y += b.y;
 	return (*a);
 }
-

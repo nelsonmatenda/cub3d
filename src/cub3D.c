@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 11:36:59 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:20:48 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_get_map_e_config(t_game *game)
 void	ft_process_map(t_game *game)
 {
 	ft_get_map_e_config(game);
-	 ft_parse_config_line(game);
+	ft_parse_config_line(game);
 	ft_parse_content_map(game);
 }
 
@@ -60,14 +60,10 @@ void	ft_init_game_struct(t_game *game)
 	game->delta_time = 0;
 }
 
-int	ft_close_window(t_game *game)
-{
-	return (ft_exit(game, 1, "YOU END THE GAME"));
-}
-
 void	ft_load_texture_structs(t_game *game)
 {
 	int	i;
+
 	game->map.textures[0].image.ptr = mlx_xpm_file_to_image(game->mlx,
 			game->map.no, &game->map.textures[0].width,
 			&game->map.textures[0].height);

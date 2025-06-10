@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:48:08 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/06/06 15:13:17 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:20:03 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,9 @@ int	game_loop(t_game *game)
 	end_time = get_time_in_milliseconds();
 	game->delta_time = end_time - start_time;
 	return (0);
+}
+
+int	ft_close_window(t_game *game)
+{
+	return (ft_exit(game, 1, "YOU END THE GAME"));
 }

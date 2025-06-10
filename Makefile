@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: matenda <matenda@student.42.fr>            +#+  +:+       +#+         #
+#    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/05/31 23:18:05 by matenda          ###   ########.fr        #
+#    Updated: 2025/06/10 13:23:24 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,20 +21,25 @@ CC  = cc
 CFLAGS = -Wextra -Werror -Wall -g
 
 SRCS	= $(addprefix src/, $(addsuffix .c, \
-			cub3D \
-			get_next_line_1\
+			cub3D ))
+
+SRCS	+= $(addprefix src/raycasting/, $(addsuffix .c, \
+			raycasting_1 \
+			raycasting_2 \
+			raycasting_3))
+
+SRCS	+= $(addprefix src/init/, $(addsuffix .c, \
+			init))
+
+SRCS	+= $(addprefix src/map/, $(addsuffix .c, \
+			get_next_line_1 \
 			get_next_line_2 \
 			read_file \
-			free_game \
-			ft_exit \
-			init \
 			config_validation_1 \
 			config_validation_2 \
 			config_validation_3_rest \
 			map_validation_1 \
-			map_validation_2 \
-			raycasting_1 \
-			raycasting_2))
+			map_validation_2))
 
 SRCS	+= $(addprefix src/utils/, $(addsuffix .c, \
 			put_pixel \
@@ -51,6 +56,10 @@ SRCS	+= $(addprefix src/utils/vector/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/hooks/, $(addsuffix .c, \
 			player \
 			game))
+
+SRCS	+= $(addprefix src/exit/, $(addsuffix .c, \
+			free_game \
+			ft_exit))
 
 SRCS	+= $(addprefix src/move/, $(addsuffix .c, \
 			ft_move_player ))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:23:21 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 11:48:00 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:37:36 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_set_image_pixel(t_game *game, int x, int y, int wall_color)
 		+ (y * game->img.size_line + x * (game->img.bpp / BITS));
 	*(int *)pixel = wall_color;
 }
-
 
 void	ft_start_end_draw(int *start_draw, int *end_draw, int wall_height)
 {
@@ -88,7 +87,7 @@ void	ft_set_distance(t_game *game, t_dda *dda)
 			dda->side_dist.y += dda->delta.y;
 			dda->side_impact = HORIZONTAL;
 		}
-		if (dda->current.y >= 0 &&	dda->current.x >= 0 && \
+		if (dda->current.y >= 0 && dda->current.x >= 0 && \
 			game->map.content[(int)dda->current.y][(int)dda->current.x] && \
 			game->map.content[(int)dda->current.y][(int)dda->current.x] == '1')
 			dda->is_wall = 1;

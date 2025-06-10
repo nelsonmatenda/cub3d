@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:43 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/06/09 16:56:37 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:13:33 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_move_up_down(t_player *player, t_vector *velocity, int speed)
 {
-	if(player->key_up)
+	if (player->key_up)
 	{
 		ft_set_vector(velocity, player->dir);
 		ft_mult_vector(velocity, speed);
@@ -30,16 +30,16 @@ static void	ft_move_up_down(t_player *player, t_vector *velocity, int speed)
 
 static void	ft_move_left_right(t_player *player, t_vector *strafe, int speed)
 {
-	if(player->key_left)
+	if (player->key_left)
 	{
 		ft_set_vector(strafe, player->dir);
-		ft_rotate_vector(&strafe->x, &strafe->y, -PI / 2 );
+		ft_rotate_vector(&strafe->x, &strafe->y, -PI / 2);
 		ft_mult_vector(strafe, speed);
 	}
 	else if (player->key_right)
 	{
 		ft_set_vector(strafe, player->dir);
-		ft_rotate_vector(&strafe->x, &strafe->y, PI / 2 );
+		ft_rotate_vector(&strafe->x, &strafe->y, PI / 2);
 		ft_mult_vector(strafe, speed);
 	}
 	else
@@ -48,7 +48,7 @@ static void	ft_move_left_right(t_player *player, t_vector *strafe, int speed)
 
 static void	ft_rotate_left_right(t_player *player, float *angle)
 {
-	if(player->left_rotate)
+	if (player->left_rotate)
 		*angle = -3;
 	else if (player->right_rotate)
 		*angle = 3;

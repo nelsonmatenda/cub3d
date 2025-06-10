@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_colision.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:01:40 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/05/31 21:27:19 by matenda          ###   ########.fr       */
+/*   Updated: 2025/06/10 12:12:10 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../includes/cub3D.h"
+#include "../../../includes/cub3D.h"
 
 t_vector	ft_square_colision(t_vector p, t_vector p_next, t_vector m, \
 								char **map)
@@ -24,10 +24,10 @@ t_vector	ft_square_colision(t_vector p, t_vector p_next, t_vector m, \
 		return ((t_vector){1, 1});
 	if (map[(int)m.y][(int)m.x] == '1')
 	{
-		if((p_next.x + LIMIT < m.x) || (p_next.x - LIMIT > m.x + 1) \
+		if ((p_next.x + LIMIT < m.x) || (p_next.x - LIMIT > m.x + 1) \
 			|| (p.y + LIMIT < m.y) || (p.y - LIMIT > m.y + 1))
 			res.x = 1;
-		if((p_next.y + LIMIT < m.y) || (p_next.y - LIMIT > m.y + 1) || \
+		if ((p_next.y + LIMIT < m.y) || (p_next.y - LIMIT > m.y + 1) || \
 			(p.x + LIMIT < m.x) || (p.x - LIMIT > m.x + 1))
 			res.y = 1;
 		return (res);
@@ -45,22 +45,22 @@ t_vector	ft_check_colision(t_player *player, t_vector p_next, t_vector m, \
 	ft_set_vector(&col, (t_vector){1, 1});
 	if (ft_mag_vector(m) > 0)
 	{
-		ft_mult_two_vector(&col ,ft_square_colision(p, p_next, \
-			(t_vector){floor(p.x) -1, floor(p.y) - 1}, map));
-		ft_mult_two_vector(&col ,ft_square_colision(p, p_next, \
-			(t_vector){floor(p.x) -1, floor(p.y)}, map));
-		ft_mult_two_vector(&col ,ft_square_colision(p, p_next, \
-			(t_vector){floor(p.x) -1, floor(p.y) + 1}, map));
-		ft_mult_two_vector(&col ,ft_square_colision(p, p_next, \
+		ft_mult_two_vector(&col, ft_square_colision(p, p_next, \
+			(t_vector){floor(p.x) - 1, floor(p.y) - 1}, map));
+		ft_mult_two_vector(&col, ft_square_colision(p, p_next, \
+			(t_vector){floor(p.x) - 1, floor(p.y)}, map));
+		ft_mult_two_vector(&col, ft_square_colision(p, p_next, \
+			(t_vector){floor(p.x) - 1, floor(p.y) + 1}, map));
+		ft_mult_two_vector(&col, ft_square_colision(p, p_next, \
 			(t_vector){floor(p.x), floor(p.y) - 1}, map));
-		ft_mult_two_vector(&col ,ft_square_colision(p, p_next, \
-			(t_vector){floor(p.x) , floor(p.y) + 1}, map));
-		ft_mult_two_vector(&col ,ft_square_colision(p, p_next, \
-			(t_vector){floor(p.x) +1, floor(p.y) -1}, map));
-		ft_mult_two_vector(&col ,ft_square_colision(p, p_next, \
-			(t_vector){floor(p.x) +1, floor(p.y)}, map));
-		ft_mult_two_vector(&col ,ft_square_colision(p, p_next, \
-			(t_vector){floor(p.x) +1, floor(p.y) +1}, map));
+		ft_mult_two_vector(&col, ft_square_colision(p, p_next, \
+			(t_vector){floor(p.x), floor(p.y) + 1}, map));
+		ft_mult_two_vector(&col, ft_square_colision(p, p_next, \
+			(t_vector){floor(p.x) + 1, floor(p.y) - 1}, map));
+		ft_mult_two_vector(&col, ft_square_colision(p, p_next, \
+			(t_vector){floor(p.x) + 1, floor(p.y)}, map));
+		ft_mult_two_vector(&col, ft_square_colision(p, p_next, \
+			(t_vector){floor(p.x) + 1, floor(p.y) + 1}, map));
 	}
 	return (col);
 }
