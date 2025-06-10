@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:18:45 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 11:47:45 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:53:57 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,9 @@ void	ft_render_wall(t_game *game, t_group_r group)
 {
 	t_group_rw vars;
 	int id_texture;
-	int	flag;
 	float acrescimo;
 
-	ft_start_end_draw(&vars.start, &vars.end, (int)(HEIGHT / group.wall_distance), &flag);
+	ft_start_end_draw(&vars.start, &vars.end, (int)(HEIGHT / group.wall_distance));
 	vars.y = vars.start;
 	acrescimo = 0;
 	if (vars.start == 0)
