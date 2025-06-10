@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/06 15:12:08 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:48:15 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define MAP_ERR -1
 # define MLX_ERR -32
 # define MALLOC_ERR -33
-# define WIDTH 320
-# define HEIGHT 200
+# define WIDTH 1024
+# define HEIGHT 800
 # define BITS 8
 # define LIMIT 0.4
 # define VERTICAL 0

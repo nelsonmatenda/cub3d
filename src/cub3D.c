@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/06 15:14:45 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:36:59 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_get_map_e_config(t_game *game)
 void	ft_process_map(t_game *game)
 {
 	ft_get_map_e_config(game);
-	ft_parse_config_line(game);
+	 ft_parse_config_line(game);
 	ft_parse_content_map(game);
 }
 

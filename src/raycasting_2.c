@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:23:21 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/03 10:02:53 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:48:00 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_set_image_pixel(t_game *game, int x, int y, int wall_color)
 		+ (y * game->img.size_line + x * (game->img.bpp / BITS));
 	*(int *)pixel = wall_color;
 }
+
 
 void	ft_start_end_draw(int *start_draw, int *end_draw, int wall_height)
 {

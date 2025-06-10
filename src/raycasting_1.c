@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:18:45 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/06 14:50:50 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:47:45 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,23 @@ void	ft_render_wall(t_game *game, t_group_r group)
 {
 	t_group_rw vars;
 	int id_texture;
+	int	flag;
+	float acrescimo;
 
-	ft_start_end_draw(&vars.start, &vars.end, (int)(HEIGHT / group.wall_distance));
+	ft_start_end_draw(&vars.start, &vars.end, (int)(HEIGHT / group.wall_distance), &flag);
 	vars.y = vars.start;
+	acrescimo = 0;
+	if (vars.start == 0)
+		acrescimo = (int)(HEIGHT / group.wall_distance)/2 - HEIGHT/2;
 	ft_render_wall_2(*game, group, &vars, &id_texture);
 	vars.dist -= floor(vars.dist);
 	while (vars.y <= vars.end)
 	{
 		vars.pixel.x = vars.dist * game->map.textures[id_texture].width;
-		vars.pixel.y = (game->map.textures[id_texture].height * (vars.y - vars.start)) / (int)(HEIGHT / group.wall_distance);
+
+		vars.pixel.y = (game->map.textures[id_texture].height * ((vars.y + (int)acrescimo) - vars.start)) / (int)(HEIGHT / group.wall_distance);
+
 		vars.pixel_texture = (char *)game->map.textures[id_texture].image.data + ((int)vars.pixel.y * game->map.textures[id_texture].image.size_line) + ((int)vars.pixel.x * (game->map.textures[id_texture].image.bpp / 8));
-
-
 		vars.wall_color = *(int *)vars.pixel_texture;
 		ft_set_image_pixel(game, group.x, vars.y, vars.wall_color);
 		vars.y++;
