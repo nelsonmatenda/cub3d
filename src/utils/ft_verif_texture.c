@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../includes/cub3d.h"
 
 void	ft_verif_texture(t_game *g, char **parts)
 {
