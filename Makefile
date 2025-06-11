@@ -6,7 +6,7 @@
 #    By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/06/10 14:56:47 by gudos-sa         ###   ########.fr        #
+#    Updated: 2025/06/11 10:32:59 by gudos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRCS	+= $(addprefix src/map/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/utils/, $(addsuffix .c, \
 			put_pixel \
 			get_time_in_milliseconds \
-			ft_verif_texture))
+			ft_verif_texture \
+			convert_rgb))
 
 SRCS	+= $(addprefix src/utils/vector/, $(addsuffix .c, \
 			ft_add_vector \
@@ -80,7 +81,7 @@ all: $(NAME)
 $(NAME): $(SRCS) $(OBJS)
 	make -C $(LIBFTDIR)
 	make -C $(MINILIBXDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -g -o $(NAME) $(OBJS) $(ADDLIBFT) $(ADDMINILIBX)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(ADDLIBFT) $(ADDMINILIBX)
 	clear
 	@echo "MANDATORY PART COMPILED!"
 clean:

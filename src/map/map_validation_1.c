@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation.c                                   :+:      :+:    :+:   */
+/*   map_validation_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:47 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/21 12:37:09 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:32:10 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void	ft_parse_content_map(t_game *game)
 		ft_exit(game, -1,
 			"There must be one character to represent the player");
 	if (!ft_around1(game->map.content))
-		ft_exit(game, -1, "The map must be surrounded by 1");
+		ft_exit(game, -1, "The map must be around 1 \
+			and must not have empty space inside");
 }

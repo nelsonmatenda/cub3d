@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:18:45 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 12:52:23 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:56:32 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_draw_ceil_floor(t_game *game)
 		y = 0;
 		while (y < HEIGHT / 2)
 		{
-			ft_set_image_pixel(game, x, y, 0x87CEEB);
+			ft_set_image_pixel(game, x, y, ft_convert_rgb(game->map.c));
 			y++;
 		}
 		x++;
@@ -34,7 +34,7 @@ void	ft_draw_ceil_floor(t_game *game)
 		y = HEIGHT / 2;
 		while (y < HEIGHT)
 		{
-			ft_set_image_pixel(game, x, y, 0x333333);
+			ft_set_image_pixel(game, x, y, ft_convert_rgb(game->map.f));
 			y++;
 		}
 		x++;

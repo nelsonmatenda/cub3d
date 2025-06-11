@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 14:54:13 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:56:11 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ void		ft_raycasting(t_game *game);
 void		ft_start_end_draw(int *start_draw, int *end_draw, int wall_height);
 void		ft_render_wall(t_game *game, t_group_r group);
 void		ft_set_image_pixel(t_game *game, int x, int y, int wall_color);
+int			ft_convert_rgb(t_rgb color);
 void		ft_set_delta(t_vector ray, t_vector *delta);
 void		ft_set_side_dist(t_game *game, t_dda	*dda, t_vector ray);
 void		ft_set_distance(t_game *game, t_dda *dda);
