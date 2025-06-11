@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:37:22 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 14:51:17 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:13:36 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,14 @@ char	**ft_split_first_and_rest(char *str)
 	char	*part_trimed;
 
 	parts = NULL;
-	part = ft_get_first_part(str);
-	part_trimed = ft_strtrim(part, " ");
-	free(part);
-	if (part_trimed != NULL)
-	{
-		parts = ft_append_line(parts, part_trimed);
-		free(part_trimed);
-	}
+	ft_split_first_and_rest_2(&parts, str);
 	part = ft_get_rest_part(str);
-	part_trimed = ft_strtrim(part, " ");
-	free(part);
+	part_trimed = NULL;
+	if (part != NULL)
+	{
+		part_trimed = ft_strtrim(part, " ");
+		free(part);
+	}
 	if (part_trimed != NULL)
 	{
 		parts = ft_append_line(parts, part_trimed);
@@ -101,7 +98,6 @@ void	ft_parse_config_line(t_game *game)
 	while (game->map.configs[i] != NULL)
 	{
 		parts = ft_split_first_and_rest(game->map.configs[i]);
-		ft_parse_config_line2(game, parts);
 		if (ft_strlen(parts[0]) == 2)
 			ft_set_texture(game, parts);
 		else if (ft_strlen(parts[0]) == 1)
