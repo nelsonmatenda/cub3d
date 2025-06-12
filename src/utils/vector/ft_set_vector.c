@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3D.h"
+#include "../../../includes/cub3d.h"
 
 void	ft_set_vector(t_vector *dst, t_vector a)
 {

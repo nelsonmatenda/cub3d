@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate_vector.c                                 :+:      :+:    :+:   */
+/*   convert_rgb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 10:32:44 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 12:15:09 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/06/10 16:43:43 by gudos-sa          #+#    #+#             */
+/*   Updated: 2025/06/11 10:31:20 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
-void	ft_rotate_vector(float *x, float *y, float angle)
+int	ft_convert_rgb(t_rgb color)
 {
-	t_vector	tmp;
+	int	r;
+	int	g;
+	int	b;
 
-	tmp.x = *x;
-	tmp.y = *y;
-	*x = (tmp.x * cos(angle)) - (tmp.y * sin(angle));
-	*y = (tmp.x * sin(angle)) + (tmp.y * cos(angle));
+	r = color.r;
+	g = color.g;
+	b = color.b;
+	return ((r << 16) | (g << 8) | b);
 }

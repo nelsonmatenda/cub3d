@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3D.h"
+#include "../../../includes/cub3d.h"
 
 t_vector	ft_square_colision(t_vector p, t_vector p_next, t_vector m, \
 								char **map)

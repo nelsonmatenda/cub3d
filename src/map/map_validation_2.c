@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/23 10:39:51 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:29:54 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 static int	ft_height_map(char **map)
 {
@@ -24,22 +24,17 @@ static int	ft_height_map(char **map)
 
 static int	ft_is_around_space(char **map_content, int row, int col)
 {
-	int	i;
-
 	if (row == 0 || col == 0 || row == ft_height_map(map_content) - 1
 		|| col == (int)ft_strlen(map_content[row]) - 1)
 		return (1);
-	i = col - 1;
-	while (i - (col - 1) < 3)
-	{
-		if (!map_content[row - 1][i] || map_content[row - 1][i] == ' ')
-			return (1);
-		if (!map_content[row + 1][i] || map_content[row + 1][i] == ' ')
-			return (1);
-		if (col != i && (!map_content[row][i] || map_content[row][i] == ' '))
-			return (1);
-		i++;
-	}
+	if (!map_content[row - 1][col] || map_content[row - 1][col] == ' ')
+		return (1);
+	if (!map_content[row][col - 1] || map_content[row][col - 1] == ' ')
+		return (1);
+	if (!map_content[row][col + 1] || map_content[row][col + 1] == ' ')
+		return (1);
+	if (!map_content[row + 1][col] || map_content[row + 1][col] == ' ')
+		return (1);
 	return (0);
 }
 

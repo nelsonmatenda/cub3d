@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes/cub3d.h"
 
 void	ft_render_wall_2(t_game game, t_group_r group, \
 							t_group_rw *vars, int *id_texture)
