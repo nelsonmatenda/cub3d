@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:31:14 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 15:19:11 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/12 13:33:07 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,14 @@ void	ft_load_texture_structs(t_game *game)
 {
 	int	i;
 
-	game->map.textures[0].image.ptr = mlx_xpm_file_to_image(game->mlx,
-			game->map.no, &game->map.textures[0].width,
-			&game->map.textures[0].height);
-	game->map.textures[1].image.ptr = mlx_xpm_file_to_image(game->mlx,
-			game->map.so, &game->map.textures[1].width,
-			&game->map.textures[1].height);
-	game->map.textures[2].image.ptr = mlx_xpm_file_to_image(game->mlx,
-			game->map.ea, &game->map.textures[2].width,
-			&game->map.textures[2].height);
-	game->map.textures[3].image.ptr = mlx_xpm_file_to_image(game->mlx,
-			game->map.we, &game->map.textures[3].width,
-			&game->map.textures[3].height);
+	ft_set_xpm_to_img(game);
+	i = 0;
+	while (i < 4)
+	{
+		if (!game->map.textures[i].image.ptr)
+			ft_exit(game, MLX_ERR, "invalid image");
+		i++;
+	}
 	i = 0;
 	while (i < 4)
 	{

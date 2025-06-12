@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/11 17:16:18 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/12 13:35:43 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define MAP_ERR -1
 # define MLX_ERR -32
 # define MALLOC_ERR -33
-# define WIDTH 1024
-# define HEIGHT 800
+# define WIDTH 800
+# define HEIGHT 600
 # define BITS 8
 # define LIMIT 0.4
 # define VERTICAL 0
@@ -151,6 +151,7 @@ char		**ft_append_line(char **map, char *line);
 void		ft_free_game(t_game game);
 void		ft_free_matriz(char **matriz);
 void		ft_free_t_map(t_map map);
+void		ft_set_xpm_to_img(t_game *game);
 void		ft_verif_texture(t_game *g, char **parts);
 void		ft_set_color(t_game *game, char **parts);
 int			ft_parse_rgb2(char **parts);

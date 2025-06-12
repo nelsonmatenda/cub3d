@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+         #
+#    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/06/11 10:32:59 by gudos-sa         ###   ########.fr        #
+#    Updated: 2025/06/12 13:02:51 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCS	+= $(addprefix src/utils/, $(addsuffix .c, \
 			put_pixel \
 			get_time_in_milliseconds \
 			ft_verif_texture \
-			convert_rgb))
+			convert_rgb \
+			ft_set_xpm_to_img))
 
 SRCS	+= $(addprefix src/utils/vector/, $(addsuffix .c, \
 			ft_add_vector \
