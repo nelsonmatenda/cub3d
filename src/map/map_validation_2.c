@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:39:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/11 10:29:54 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/13 13:36:07 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int	ft_is_around_space(char **map_content, int row, int col)
 		return (1);
 	if (!map_content[row][col + 1] || map_content[row][col + 1] == ' ')
 		return (1);
-	if (!map_content[row + 1][col] || map_content[row + 1][col] == ' ')
+	if (!((int)ft_strlen(map_content[row + 1]) >= col)
+		|| map_content[row + 1][col] == ' ')
 		return (1);
 	return (0);
 }
