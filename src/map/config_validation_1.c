@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:37:22 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/11 17:13:36 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:21:22 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_set_texture(t_game *game, char **parts)
 	else
 	{
 		ft_free_matriz(parts);
-		ft_exit(game, -1, "Invalid key config");
+		ft_exit(game, -1, "Valid settings have not been defined.");
 	}
 }
 
@@ -95,6 +95,8 @@ void	ft_parse_config_line(t_game *game)
 	char	**parts;
 
 	i = 0;
+	if (!game->map.configs)
+		ft_exit(game, -1, "Configs lines don't exists");
 	while (game->map.configs[i] != NULL)
 	{
 		parts = ft_split_first_and_rest(game->map.configs[i]);
@@ -105,7 +107,7 @@ void	ft_parse_config_line(t_game *game)
 		else
 		{
 			ft_free_matriz(parts);
-			ft_exit(game, -1, "Invalid keyword config");
+			ft_exit(game, -1, "Valid settings have not been defined.");
 		}
 		i++;
 		ft_free_matriz(parts);
