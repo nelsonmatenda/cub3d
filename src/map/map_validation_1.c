@@ -6,7 +6,7 @@
 /*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:36:47 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/11 10:32:10 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:25:23 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ static int	ft_only_valid_chars(char **map_content)
 
 void	ft_parse_content_map(t_game *game)
 {
+	if (!game->map.content)
+		ft_exit(game, -1, "Map content don't exist!");
 	if (!ft_only_valid_chars(game->map.content))
 		ft_exit(game, -1, "Invalid character in map");
 	if (!ft_has_player_start(game->map.content))
 		ft_exit(game, -1,
 			"There must be one character to represent the player");
 	if (!ft_around1(game->map.content))
-		ft_exit(game, -1, "The map must be around 1 \
-			and must not have empty space inside");
+		ft_exit(game, -1, "The map must be around 1 with no space inside");
 }

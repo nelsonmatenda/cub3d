@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   config_validation_2.c                               :+:      :+:    :+:  */
+/*   config_validation_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:37:22 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/04/21 12:37:26 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:27:06 by gudos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ void	ft_set_color(t_game *game, char **parts)
 	int	g;
 	int	b;
 
+	if (!parts[1])
+	{
+		ft_free_matriz(parts);
+		ft_exit(game, -1, "Invalid RGB declaration");
+	}
 	if (!ft_parse_rgb(parts[1], &r, &g, &b))
 	{
 		ft_free_matriz(parts);

@@ -6,11 +6,11 @@
 #    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/06/12 13:02:51 by nfigueir         ###   ########.fr        #
+#    Updated: 2025/06/17 08:19:39 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 LIBFTDIR = ./libft
 MINILIBXDIR = ./minilibx-linux
 HEADCUB3DIR = ./includes
@@ -99,4 +99,4 @@ fclean: clean
 re: fclean all
 
 run: all
-	./cub3d maps/default.cub
+	./cub3D maps/default.cub
