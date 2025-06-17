@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudos-sa <gudos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:50:32 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/10 15:22:33 by gudos-sa         ###   ########.fr       */
+/*   Updated: 2025/06/17 09:14:18 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,17 @@ void	ft_free_game(t_game game)
 	{
 		mlx_destroy_display(game.mlx);
 		free(game.mlx);
+	}
+}
+
+void	ft_free_array(char *s[3])
+{
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		if (s[i])
+			free(s[i]);
 	}
 }

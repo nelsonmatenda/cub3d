@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:55:48 by gudos-sa          #+#    #+#             */
-/*   Updated: 2025/06/12 13:42:44 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/06/17 09:14:28 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct s_game
 	double		delta_time;
 }				t_game;
 
+void		ft_free_array(char *s[3]);
 int			ft_exit(t_game *game, int status, char *msg);
 int			ft_close_window(t_game *game);
 char		*ft_get_next_line(int fd, int *new_line_end);

@@ -6,7 +6,7 @@
 #    By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 14:54:55 by gudos-sa          #+#    #+#              #
-#    Updated: 2025/06/17 08:19:39 by nfigueir         ###   ########.fr        #
+#    Updated: 2025/06/17 09:54:47 by nfigueir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,13 +87,13 @@ $(NAME): $(SRCS) $(OBJS)
 	@echo "MANDATORY PART COMPILED!"
 clean:
 	make clean -C $(LIBFTDIR)
-	make clean -C $(MINILIBXDIR)
 	rm -f $(OBJS)
+	make clean -C $(MINILIBXDIR)
 	clear
 	@echo "OBJECTS CLEANED!"
 fclean: clean
+		rm -rf $(NAME)
 		make fclean -C $(LIBFTDIR)
-		rm -f $(NAME)
 		clear
 		@echo "ALL CLEANED!"
 re: fclean all
